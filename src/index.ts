@@ -16,7 +16,7 @@ interface FilterItem {
 export class DrupalJsonApiParams {
   private filter: FilterItems = {};
 
-  public addFilter(path: string, value: string, operator?: string = '=', group?: string): DrupalJsonApiParams {
+  public addFilter(path: string, value: string, operator: string = '=', group?: string): DrupalJsonApiParams {
     if (operator === '=' && group === undefined && this.filter[path] === undefined) {
       this.filter[path] = value;
       return this;
