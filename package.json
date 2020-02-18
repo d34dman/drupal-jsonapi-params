@@ -1,0 +1,20 @@
+{
+  "name": "drupal-jsonapi-params",
+  "version": "1.0.0",
+  "description": "Drupal JSON-API params",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/d34dman/drupal-jsonapi-params.git"
+  },
+  "keywords": ["Drupal", "JSON-API", "javascript"],
+  "author": "D34dMan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/d34dman/drupal-jsonapi-params/issues"
+  },
+  "homepage": "https://github.com/d34dman/drupal-jsonapi-params#readme"
+}
