@@ -3,18 +3,32 @@
   "version": "1.0.0",
   "description": "Drupal JSON-API params",
   "main": "index.js",
+  "files": ["lib/**/*"],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/d34dman/drupal-jsonapi-params.git"
   },
-  "keywords": ["Drupal", "JSON-API", "javascript"],
+  "keywords": [
+    "Drupal",
+    "JSON-API",
+    "javascript"
+  ],
   "author": "D34dMan",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/d34dman/drupal-jsonapi-params/issues"
   },
-  "homepage": "https://github.com/d34dman/drupal-jsonapi-params#readme"
+  "homepage": "https://github.com/d34dman/drupal-jsonapi-params#readme",
+  "devDependencies": {
+    "prettier": "^1.19.1",
+    "tslint": "^6.0.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.7.5"
+  }
 }
