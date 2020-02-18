@@ -15,29 +15,21 @@ interface FilterItem {
 
 export class DrupalJsonApiParams {
   private filter: FilterItems = {};
-  private sort: Object = {};
-  private fields: Object = {};
-  private page: Object = {};
 
-  public addFilter(
-    path: string,
-    value: string,
-    operator: string = '=',
-    group: string | undefined = undefined,
-  ): DrupalJsonApiParams {
+  public addFilter(path: string, value: string, operator?: string = '=', group?: string): DrupalJsonApiParams {
     if (operator === '=' && group === undefined && this.filter[path] === undefined) {
       this.filter[path] = value;
       return this;
     }
 
-    var name = this.getIndexId(this.filter, path);
+    const name = this.getIndexId(this.filter, path);
 
     this.filter[name] = {
       condition: {
-        path: path,
-        value: value,
-        ...(operator !== '=' && { operator: operator }),
-        ...(group !== undefined && { group: group }),
+        path,
+        value,
+        ...(operator !== '=' && { operator }),
+        ...(group !== undefined && { group }),
       },
     };
 
@@ -55,7 +47,7 @@ export class DrupalJsonApiParams {
   }
 
   public getQueryString(): string {
-    let data = {
+    const data = {
       filter: this.filter,
     };
     return qs.stringify(data);
