@@ -1,4 +1,5 @@
 import { DrupalJsonApiParams } from '../index';
 test('My Greeter', () => {
-  expect(DrupalJsonApiParams('Carl')).toBe('Hello Carl');
+  let Person = new DrupalJsonApiParams('World');
+  expect(Person.greet()).toBe('Hello, World');
 });

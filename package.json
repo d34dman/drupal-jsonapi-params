@@ -35,11 +35,15 @@
   "homepage": "https://github.com/d34dman/drupal-jsonapi-params#readme",
   "devDependencies": {
     "@types/jest": "^25.1.2",
+    "@types/qs": "^6.9.1",
     "jest": "^25.1.0",
     "prettier": "^1.19.1",
     "ts-jest": "^25.2.0",
     "tslint": "^6.0.0",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.7.5"
+  },
+  "dependencies": {
+    "qs": "^6.9.1"
   }
 }
