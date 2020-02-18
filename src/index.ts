@@ -1,14 +1,16 @@
 import qs = require('qs')
 
 export class DrupalJsonApiParams {
-
-  greeting: string;
  
-  constructor (message: string) {
-    this.greeting = message;
+  private filter:Object = {};
+  private sort:Object = {};
+  private fields:Object = {};
+  private page:Object = {};
+
+
+  getQueryString ():string {
+    let data = {}
+    return qs.stringify(data)
   }
 
-  public greet() {
-    return "Hello, " + this.greeting;
-  }
 }
