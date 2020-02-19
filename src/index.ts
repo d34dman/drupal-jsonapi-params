@@ -13,8 +13,25 @@ interface FilterItem {
   };
 }
 
+interface GroupItems {
+  [key: string]: GroupItem;
+}
+interface GroupItem {
+  conjunction: string;
+  memberOf?: string;
+}
+
 export class DrupalJsonApiParams {
   private filter: FilterItems = {};
+  private group: GroupItems = {};
+
+  public addGroup(name: string, conjunction: string = 'OR', memberOf?: string): DrupalJsonApiParams {
+    this.group[name] = {
+      conjunction,
+      ...(memberOf !== undefined && {memberOf}),
+    };
+    return this;
+  }
 
   public addFilter(path: string, value: string, operator: string = '=', group?: string): DrupalJsonApiParams {
     if (operator === '=' && group === undefined && this.filter[path] === undefined) {
@@ -48,7 +65,8 @@ export class DrupalJsonApiParams {
 
   public getQueryString(): string {
     const data = {
-      filter: this.filter,
+      ...(this.filter !== {} && {filter: this.filter}),
+      ...(this.group !== {} && {group: this.group}),
     };
     return qs.stringify(data);
   }
