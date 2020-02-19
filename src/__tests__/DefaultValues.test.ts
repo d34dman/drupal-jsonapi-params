@@ -47,3 +47,10 @@ test('Add Groups to Group', () => {
     .addGroup('parent_group', 'AND');
   expect(api.getQueryString()).toBe('group%5Bchild_group_A%5D%5Bconjunction%5D=OR&group%5Bchild_group_A%5D%5BmemberOf%5D=parent_group&group%5Bchild_group_B%5D%5Bconjunction%5D=AND&group%5Bchild_group_B%5D%5BmemberOf%5D=parent_group&group%5Bparent_group%5D%5Bconjunction%5D=AND');
 });
+
+test('Add Include', () => {
+  let api = new DrupalJsonApiParams();
+  api
+    .addInclude('field_a.id', 'field_b.uid', 'field_c.tid');
+  expect(api.getQueryString()).toBe('include=field_a.id%2Cfield_b.uid%2Cfield_c.tid');
+});

@@ -24,6 +24,12 @@ interface GroupItem {
 export class DrupalJsonApiParams {
   private filter: FilterItems = {};
   private group: GroupItems = {};
+  private include: string[] = []; 
+
+  public addInclude(...fields:string[]): DrupalJsonApiParams {
+    this.include = this.include.concat(fields);
+    return this;
+  }
 
   public addGroup(name: string, conjunction: string = 'OR', memberOf?: string): DrupalJsonApiParams {
     this.group[name] = {
@@ -67,6 +73,7 @@ export class DrupalJsonApiParams {
     const data = {
       ...(this.filter !== {} && {filter: this.filter}),
       ...(this.group !== {} && {group: this.group}),
+      ...(!!this.include.length && {include: this.include.join(',')}),
     };
     return qs.stringify(data);
   }
