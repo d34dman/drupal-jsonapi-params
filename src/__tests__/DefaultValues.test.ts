@@ -54,3 +54,10 @@ test('Add Include', () => {
     .addInclude('field_a.id', 'field_b.uid', 'field_c.tid');
   expect(api.getQueryString()).toBe('include=field_a.id%2Cfield_b.uid%2Cfield_c.tid');
 });
+
+test('Add Pager with limit 5', () => {
+  let api = new DrupalJsonApiParams();
+  api
+    .addPageLimit(5);
+  expect(api.getQueryString()).toBe('page%5Blimit%5D=5');
+});

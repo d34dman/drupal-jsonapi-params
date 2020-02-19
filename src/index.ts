@@ -21,10 +21,20 @@ interface GroupItem {
   memberOf?: string;
 }
 
+interface PageItem {
+  limit:number;
+}
+
 export class DrupalJsonApiParams {
   private filter: FilterItems = {};
   private group: GroupItems = {};
-  private include: string[] = []; 
+  private include: string[] = [];
+  private page: PageItem|undefined = undefined;
+
+  public addPageLimit(limit:number) : DrupalJsonApiParams {
+    this.page = { limit };
+    return this;
+  }
 
   public addInclude(...fields:string[]): DrupalJsonApiParams {
     this.include = this.include.concat(fields);
@@ -74,6 +84,7 @@ export class DrupalJsonApiParams {
       ...(this.filter !== {} && {filter: this.filter}),
       ...(this.group !== {} && {group: this.group}),
       ...(!!this.include.length && {include: this.include.join(',')}),
+      ...(this.page !== undefined && {page: this.page}),
     };
     return qs.stringify(data);
   }
