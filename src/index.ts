@@ -25,12 +25,26 @@ interface PageItem {
   limit:number;
 }
 
+interface FieldItems {
+  [key: string]: string;
+}
+
 export class DrupalJsonApiParams {
   private filter: FilterItems = {};
   private group: GroupItems = {};
   private sort: string[] = [];
   private include: string[] = [];
   private page: PageItem|undefined = undefined;
+  private fields: FieldItems = {};
+
+  // restrictFieldsByType (type, ...fields) {
+  //   this.data.fields[type] = fields.join(',')
+  //   return this
+  // }
+  public addFields(type:string, fields: string[]): DrupalJsonApiParams {
+    this.fields[type] = fields.join(',');
+    return this;
+  }
 
   public addSort(path: string, direction?: string): DrupalJsonApiParams {
     let prefix = '';
@@ -46,7 +60,7 @@ export class DrupalJsonApiParams {
     return this;
   }
 
-  public addInclude(...fields:string[]): DrupalJsonApiParams {
+  public addInclude(fields:string[]): DrupalJsonApiParams {
     this.include = this.include.concat(fields);
     return this;
   }
@@ -96,6 +110,7 @@ export class DrupalJsonApiParams {
       ...(!!this.include.length && {include: this.include.join(',')}),
       ...(this.page !== undefined && {page: this.page}),
       ...(!!this.sort.length && {sort: this.sort.join(',')}),
+      ...(this.fields !== {} && {fields: this.fields}),
     };
     return qs.stringify(data);
   }
