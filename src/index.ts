@@ -28,8 +28,18 @@ interface PageItem {
 export class DrupalJsonApiParams {
   private filter: FilterItems = {};
   private group: GroupItems = {};
+  private sort: string[] = [];
   private include: string[] = [];
   private page: PageItem|undefined = undefined;
+
+  public addSort(path: string, direction?: string): DrupalJsonApiParams {
+    let prefix = '';
+    if (direction !== undefined && direction === 'DESC') {
+      prefix = '-';
+    }
+    this.sort = this.sort.concat(prefix + path);
+    return this;
+  }
 
   public addPageLimit(limit:number) : DrupalJsonApiParams {
     this.page = { limit };
@@ -85,6 +95,7 @@ export class DrupalJsonApiParams {
       ...(this.group !== {} && {group: this.group}),
       ...(!!this.include.length && {include: this.include.join(',')}),
       ...(this.page !== undefined && {page: this.page}),
+      ...(!!this.sort.length && {sort: this.sort.join(',')}),
     };
     return qs.stringify(data);
   }

@@ -61,3 +61,26 @@ test('Add Pager with limit 5', () => {
     .addPageLimit(5);
   expect(api.getQueryString()).toBe('page%5Blimit%5D=5');
 });
+
+test('Add sort by status', () => {
+  let api = new DrupalJsonApiParams();
+  api
+    .addSort('status');
+  expect(api.getQueryString()).toBe('sort=status');
+});
+
+test('Add sort by status DESC', () => {
+  let api = new DrupalJsonApiParams();
+  api
+    .addSort('status', 'DESC');
+  expect(api.getQueryString()).toBe('sort=-status');
+});
+
+test('Add multiple sort criterion', () => {
+  let api = new DrupalJsonApiParams();
+  api
+    .addSort('id', 'DESC')
+    .addSort('uid')
+    .addSort('status');
+  expect(api.getQueryString()).toBe('sort=-id%2Cuid%2Cstatus');
+});
