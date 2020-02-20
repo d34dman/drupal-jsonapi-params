@@ -8,9 +8,9 @@
 
 The [JSON:API](https://jsonapi.org/) is now part of [Drupal](https://www.drupal.org/) Core.
 
-The JSON:API specifications defines standard query parameters to be used to do filtering, sorting, restring fields that are returned, pagination and so on.
+The JSON:API specifications defines standard query parameters to be used to do filtering, sorting, restricting fields that are returned, pagination and so on.
 
-This module provides a helper Class to create the required query.
+This module provides a helper Class to create the required query. While doing so, it also tries to optimise the query by using the short form, whenever possible.
 
 ## Installation
 
