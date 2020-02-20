@@ -22,7 +22,7 @@ interface GroupItem {
 }
 
 interface PageItem {
-  limit:number;
+  limit: number;
 }
 
 interface FieldItems {
@@ -34,10 +34,10 @@ export class DrupalJsonApiParams {
   private group: GroupItems = {};
   private sort: string[] = [];
   private include: string[] = [];
-  private page: PageItem|undefined = undefined;
+  private page: PageItem | undefined = undefined;
   private fields: FieldItems = {};
 
-  public addFields(type:string, fields: string[]): DrupalJsonApiParams {
+  public addFields(type: string, fields: string[]): DrupalJsonApiParams {
     this.fields[type] = fields.join(',');
     return this;
   }
@@ -51,12 +51,12 @@ export class DrupalJsonApiParams {
     return this;
   }
 
-  public addPageLimit(limit:number) : DrupalJsonApiParams {
+  public addPageLimit(limit: number): DrupalJsonApiParams {
     this.page = { limit };
     return this;
   }
 
-  public addInclude(fields:string[]): DrupalJsonApiParams {
+  public addInclude(fields: string[]): DrupalJsonApiParams {
     this.include = this.include.concat(fields);
     return this;
   }
@@ -64,7 +64,7 @@ export class DrupalJsonApiParams {
   public addGroup(name: string, conjunction: string = 'OR', memberOf?: string): DrupalJsonApiParams {
     this.group[name] = {
       conjunction,
-      ...(memberOf !== undefined && {memberOf}),
+      ...(memberOf !== undefined && { memberOf }),
     };
     return this;
   }
@@ -101,12 +101,12 @@ export class DrupalJsonApiParams {
 
   public getQueryString(): string {
     const data = {
-      ...(this.filter !== {} && {filter: this.filter}),
-      ...(this.group !== {} && {group: this.group}),
-      ...(!!this.include.length && {include: this.include.join(',')}),
-      ...(this.page !== undefined && {page: this.page}),
-      ...(!!this.sort.length && {sort: this.sort.join(',')}),
-      ...(this.fields !== {} && {fields: this.fields}),
+      ...(this.filter !== {} && { filter: this.filter }),
+      ...(this.group !== {} && { group: this.group }),
+      ...(!!this.include.length && { include: this.include.join(',') }),
+      ...(this.page !== undefined && { page: this.page }),
+      ...(!!this.sort.length && { sort: this.sort.join(',') }),
+      ...(this.fields !== {} && { fields: this.fields }),
     };
     return qs.stringify(data);
   }
