@@ -1,9 +1,10 @@
 # Drupal JSON-API Params
 
 [![Build Status](https://travis-ci.org/d34dman/drupal-jsonapi-params.svg?branch=master)](https://travis-ci.org/d34dman/drupal-jsonapi-params)
-
 [![codecov](https://codecov.io/gh/d34dman/drupal-jsonapi-params/branch/master/graph/badge.svg)](https://codecov.io/gh/d34dman/drupal-jsonapi-params)
-
+![npm](https://img.shields.io/npm/v/drupal-jsonapi-params)
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/drupal-jsonapi-params)
+![npm type definitions](https://img.shields.io/npm/types/drupal-jsonapi-params)
 
 The [JSON:API](https://jsonapi.org/) is now part of [Drupal](https://www.drupal.org/) Core.
 
