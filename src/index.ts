@@ -37,10 +37,6 @@ export class DrupalJsonApiParams {
   private page: PageItem|undefined = undefined;
   private fields: FieldItems = {};
 
-  // restrictFieldsByType (type, ...fields) {
-  //   this.data.fields[type] = fields.join(',')
-  //   return this
-  // }
   public addFields(type:string, fields: string[]): DrupalJsonApiParams {
     this.fields[type] = fields.join(',');
     return this;
@@ -93,7 +89,7 @@ export class DrupalJsonApiParams {
     return this;
   }
 
-  getIndexId(obj: any, proposedKey: string): string {
+  private getIndexId(obj: any, proposedKey: string): string {
     let key: string;
     if (obj[proposedKey] === undefined) {
       key = proposedKey;
