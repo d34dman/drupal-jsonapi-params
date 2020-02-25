@@ -22,13 +22,24 @@ $ npm i drupal-jsonapi-params
 
 ## Usage
 
-Require and use `DrupalJsonApiParams` from `drupal-jsonapi-params/lib`
+### import
 
+Import `DrupalJsonApiParams` from `drupal-jsonapi-params/lib`
 ```js
 import {DrupalJsonApiParams} from 'drupal-jsonapi-params/lib';
 
 const apiParams = new DrupalJsonApiParams();
+```
 
+### require
+
+```
+var drupalJsonapiParams = require("drupal-jsonapi-params")
+
+const apiParams = new drupalJsonapiParams.DrupalJsonApiParams();
+```
+
+```
 apiParams
   // Add Group within Groups.
   .addGroup('publish_status', 'OR', 'parent_group')
