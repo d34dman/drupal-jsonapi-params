@@ -33,13 +33,13 @@ const apiParams = new DrupalJsonApiParams();
 
 ### require
 
-```
+```js
 var drupalJsonapiParams = require("drupal-jsonapi-params")
 
 const apiParams = new drupalJsonapiParams.DrupalJsonApiParams();
 ```
 
-```
+```js
 apiParams
   // Add Group within Groups.
   .addGroup('publish_status', 'OR', 'parent_group')
