@@ -76,10 +76,10 @@ Used to restrict items returned in a listing.
 
 | Params | Type | Description |
 | ---   | ---  | ---         |
-| path     | string | A 'path' identifies a field on a resource
-| value    | string | A 'value' is the thing you compare against
-| operator | string | (Optional) An 'operator' is a method of comparison 
-| group    | string | (Optional) Name of the group, the filter belongs to
+| path     | `string` | A 'path' identifies a field on a resource
+| value    | `string` | A 'value' is the thing you compare against
+| operator | `string` | (Optional) An 'operator' is a method of comparison 
+| group    | `string` | (Optional) Name of the group, the filter belongs to
 
 
 Following values can be used for the operator. If none is provided, it assumes "`=`" by default.
@@ -101,9 +101,9 @@ Used to group Filters. Groups can be nested too.
 
 |Params | Type | Description |
 | ---   | ---  | ---         |
-| name        | string | Name of the group
-| conjunction | string | (Optional) All groups have conjunctions and a conjunction is either `AND` or `OR`.
-| memberOf    | string | (Optional) Name of the group, this group belongs to
+| name        | `string` | Name of the group
+| conjunction | `string` | (Optional) All groups have conjunctions and a conjunction is either `AND` or `OR`.
+| memberOf    | `string` | (Optional) Name of the group, this group belongs to
 
 ### addInclude
 
@@ -111,7 +111,7 @@ Used to add referenced resources inside same request. Thereby preventing additio
 
 |Params | Type | Description |
 | ---   | ---  | ---         |
-| fields | string[] | Array of field names
+| fields | `string[]` | Array of field names
 
 [Read more about Includes in Drupal.org Documentation](https://www.drupal.org/docs/8/modules/jsonapi/includes)
 
@@ -121,8 +121,8 @@ Used to return the list of items in specific order.
 
 |Params | Type | Description |
 | ---   | ---  | ---         |
-| path      | string | A 'path' identifies a field on a resource
-| direction | string | Sort direction `ASC` or `DESC`
+| path      | `string` | A 'path' identifies a field on a resource
+| direction | `string` | Sort direction `ASC` or `DESC`
 
 [Read more about Sort in Drupal.org Documentation](https://www.drupal.org/docs/8/modules/jsonapi/sorting)
 
@@ -132,7 +132,7 @@ Use to restrict max amount of items returned in the listing. Using this for pagi
 
 |Params | Type | Description |
 | ---   | ---  | ---         |
-| limit | number | Number of items to limit to |
+| limit | `number` | Number of items to limit to |
 
 [Read more about Pagination in Drupal.org Documentation](https://www.drupal.org/docs/8/core/modules/jsonapi-module/pagination)
 
@@ -142,5 +142,5 @@ The name of this method might be miss leading. Use this to explicitely request f
 
 |Params | Type | Description |
 | ---   | ---  | ---         |
-| type   | string   | Resource type
-| fields | string[] | Array of field names in the given resource type
+| type   | `string`   | Resource type
+| fields | ``string[]`` | Array of field names in the given resource type
