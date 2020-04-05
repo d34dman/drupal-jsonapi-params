@@ -7,7 +7,7 @@ interface FilterItems {
 interface FilterItem {
   condition: {
     operator?: string;
-    group?: string;
+    memberOf?: string;
     path: string;
     value: string;
   };
@@ -16,9 +16,12 @@ interface FilterItem {
 interface GroupItems {
   [key: string]: GroupItem;
 }
+
 interface GroupItem {
-  conjunction: string;
-  memberOf?: string;
+  group: {
+    conjunction: string;
+    memberOf?: string;
+  }
 }
 
 interface PageItem {
@@ -63,14 +66,16 @@ export class DrupalJsonApiParams {
 
   public addGroup(name: string, conjunction: string = 'OR', memberOf?: string): DrupalJsonApiParams {
     this.group[name] = {
-      conjunction,
-      ...(memberOf !== undefined && { memberOf }),
+      group: {
+        conjunction,
+        ...(memberOf !== undefined && { memberOf }),
+      }
     };
     return this;
   }
 
-  public addFilter(path: string, value: string, operator: string = '=', group?: string): DrupalJsonApiParams {
-    if (operator === '=' && group === undefined && this.filter[path] === undefined) {
+  public addFilter(path: string, value: string, operator: string = '=', memberOf?: string): DrupalJsonApiParams {
+    if (operator === '=' && memberOf === undefined && this.filter[path] === undefined) {
       this.filter[path] = value;
       return this;
     }
@@ -82,7 +87,7 @@ export class DrupalJsonApiParams {
         path,
         value,
         ...(operator !== '=' && { operator }),
-        ...(group !== undefined && { group }),
+        ...(memberOf !== undefined && { memberOf }),
       },
     };
 
@@ -101,8 +106,12 @@ export class DrupalJsonApiParams {
 
   public getQueryObject(): object {
     const data = {
-      ...(this.filter !== {} && { filter: this.filter }),
-      ...(this.group !== {} && { group: this.group }),
+      ...(this.filter !== {} && {
+        filter: {
+          ...this.filter,
+          ...this.group
+        }
+      }),
       ...(!!this.include.length && { include: this.include.join(',') }),
       ...(this.page !== undefined && { page: this.page }),
       ...(!!this.sort.length && { sort: this.sort.join(',') }),
