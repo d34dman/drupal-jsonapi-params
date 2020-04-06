@@ -63,7 +63,7 @@ export class DrupalJsonApiParams {
       group: {
         conjunction,
         ...(memberOf !== undefined && { memberOf }),
-      }
+      },
     };
     return this;
   }
