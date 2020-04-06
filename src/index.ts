@@ -33,6 +33,11 @@ interface FieldItems {
 }
 
 export class DrupalJsonApiParams {
+  constructor(params: object) {
+    const { filter, group, sort, include, page, fields } = params;
+    this.filter = {...filter};
+
+  }
   private filter: FilterItems = {};
   private group: GroupItems = {};
   private sort: string[] = [];
@@ -65,11 +70,11 @@ export class DrupalJsonApiParams {
   }
 
   public addGroup(name: string, conjunction: string = 'OR', memberOf?: string): DrupalJsonApiParams {
-    this.group[name] = {
+    this.filter[name] = {
       group: {
         conjunction,
         ...(memberOf !== undefined && { memberOf }),
-      }
+      },
     };
     return this;
   }
@@ -106,12 +111,7 @@ export class DrupalJsonApiParams {
 
   public getQueryObject(): object {
     const data = {
-      ...(this.filter !== {} && {
-        filter: {
-          ...this.filter,
-          ...this.group
-        }
-      }),
+      ...(this.filter !== {} && { filter: this.filter }),
       ...(!!this.include.length && { include: this.include.join(',') }),
       ...(this.page !== undefined && { page: this.page }),
       ...(!!this.sort.length && { sort: this.sort.join(',') }),
