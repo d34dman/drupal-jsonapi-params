@@ -5,12 +5,13 @@ interface FilterItems {
 }
 
 interface FilterItem {
-  condition: {
+  condition?: {
     operator?: string;
     memberOf?: string;
     path: string;
     value: string;
   };
+  group?: GroupItem;
 }
 
 interface GroupItems {
@@ -18,10 +19,8 @@ interface GroupItems {
 }
 
 interface GroupItem {
-  group: {
-    conjunction: string;
-    memberOf?: string;
-  }
+  conjunction: string;
+  memberOf?: string;
 }
 
 interface PageItem {
@@ -33,13 +32,7 @@ interface FieldItems {
 }
 
 export class DrupalJsonApiParams {
-  constructor(params: object) {
-    const { filter, group, sort, include, page, fields } = params;
-    this.filter = {...filter};
-
-  }
   private filter: FilterItems = {};
-  private group: GroupItems = {};
   private sort: string[] = [];
   private include: string[] = [];
   private page: PageItem | undefined = undefined;
