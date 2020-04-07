@@ -22,7 +22,7 @@ This module provides a helper Class to create the required query. While doing so
 Install the package via `npm`:
 
 ```sh
-$ npm i drupal-jsonapi-params
+$ npm i enhanced-drupal-jsonapi-params
 ```
 
 ## Usage
