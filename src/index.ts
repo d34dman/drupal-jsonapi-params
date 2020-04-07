@@ -5,12 +5,13 @@ interface FilterItems {
 }
 
 interface FilterItem {
-  condition: {
+  condition?: {
     operator?: string;
     memberOf?: string;
     path: string;
     value: string;
   };
+  group?: GroupItem;
 }
 
 interface GroupItems {
@@ -18,10 +19,8 @@ interface GroupItems {
 }
 
 interface GroupItem {
-  group: {
-    conjunction: string;
-    memberOf?: string;
-  }
+  conjunction: string;
+  memberOf?: string;
 }
 
 interface PageItem {
@@ -32,9 +31,16 @@ interface FieldItems {
   [key: string]: string;
 }
 
+interface Params {
+  filter?: FilterItems | undefined;
+  sort?: Array<string> | string;
+  include?: Array<string> | string;
+  page?: PageItem | undefined;
+  fields?: FieldItems | undefined;
+}
+
 export class DrupalJsonApiParams {
   private filter: FilterItems = {};
-  private group: GroupItems = {};
   private sort: string[] = [];
   private include: string[] = [];
   private page: PageItem | undefined = undefined;
@@ -65,11 +71,11 @@ export class DrupalJsonApiParams {
   }
 
   public addGroup(name: string, conjunction: string = 'OR', memberOf?: string): DrupalJsonApiParams {
-    this.group[name] = {
+    this.filter[name] = {
       group: {
         conjunction,
         ...(memberOf !== undefined && { memberOf }),
-      }
+      },
     };
     return this;
   }
@@ -104,14 +110,30 @@ export class DrupalJsonApiParams {
     return key;
   }
 
+  public mergeQueryObject(params: Params): DrupalJsonApiParams {
+    this.filter = { ...this.filter, ...params.filter};
+    if (params.sort !== undefined && !!params.sort.length) {
+      let a = params.sort;
+      if (typeof a === 'string') {
+        a = a.split(',');
+      }
+      this.sort = this.sort.concat(a);
+    }
+    if (params.include !== undefined && !!params.include.length) {
+      let a = params.include;
+      if (typeof a === 'string') {
+        a = a.split(',');
+      }
+      this.include = this.include.concat(a);
+    }
+    this.page = params.page !== undefined && params.page.limit !== undefined ? { ...params.page} : this.page;
+    this.fields = { ...params.fields};
+    return this;
+  }
+
   public getQueryObject(): object {
     const data = {
-      ...(this.filter !== {} && {
-        filter: {
-          ...this.filter,
-          ...this.group
-        }
-      }),
+      ...(this.filter !== {} && { filter: this.filter }),
       ...(!!this.include.length && { include: this.include.join(',') }),
       ...(this.page !== undefined && { page: this.page }),
       ...(!!this.sort.length && { sort: this.sort.join(',') }),

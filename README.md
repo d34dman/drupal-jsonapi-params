@@ -6,6 +6,11 @@
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/drupal-jsonapi-params)
 ![npm type definitions](https://img.shields.io/npm/types/drupal-jsonapi-params)
 
+enhanced-drupal-jsonapi-params
+===========
+
+This repo is based on https://github.com/d34dman/drupal-jsonapi-params with added features. Please checkout that repo for more information.
+
 The [JSON:API](https://jsonapi.org/) is now part of [Drupal](https://www.drupal.org/) Core.
 
 The JSON:API specifications defines standard query parameters to be used to do filtering, sorting, restricting fields that are returned, pagination and so on.
@@ -78,7 +83,7 @@ Used to restrict items returned in a listing.
 | ---   | ---  | ---         |
 | path     | `string` | A 'path' identifies a field on a resource
 | value    | `string` | A 'value' is the thing you compare against
-| operator | `string` | (Optional) An 'operator' is a method of comparison 
+| operator | `string` | (Optional) An 'operator' is a method of comparison
 | group    | `string` | (Optional) Name of the group, the filter belongs to
 
 
