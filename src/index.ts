@@ -33,8 +33,8 @@ interface FieldItems {
 
 interface Params {
   filter?: FilterItems | undefined;
-  sort?: Array<string> | string;
-  include?: Array<string> | string;
+  sort?: string[] | string;
+  include?: string[] | string;
   page?: PageItem | undefined;
   fields?: FieldItems | undefined;
 }
