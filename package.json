@@ -30,7 +30,6 @@
     "params",
     "query"
   ],
-  "author": "rowrowrowrow",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/rowrowrowrow/enhanced-drupal-jsonapi-params/issues"
