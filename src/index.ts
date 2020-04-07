@@ -98,7 +98,7 @@ export class DrupalJsonApiParams {
     return key;
   }
 
-  public getQueryString(): string {
+  public getQueryObject(): object {
     const data = {
       ...(this.filter !== {} && { filter: this.filter }),
       ...(!!this.include.length && { include: this.include.join(',') }),
@@ -106,6 +106,11 @@ export class DrupalJsonApiParams {
       ...(!!this.sort.length && { sort: this.sort.join(',') }),
       ...(this.fields !== {} && { fields: this.fields }),
     };
+    return data;
+  }
+
+  public getQueryString(): string {
+    const data = this.getQueryObject();
     return qs.stringify(data);
   }
 }
