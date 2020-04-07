@@ -1,7 +1,8 @@
 {
-  "name": "drupal-jsonapi-params",
-  "version": "1.1.4",
-  "description": "Drupal JSON-API params",
+  "name": "enhanced-drupal-jsonapi-params",
+  "version": "1.1.5",
+  "description": "Drupal JSON-API params, Based on https://github.com/d34dman/drupal-jsonapi-params with added features.",
+  "author": "rowrowrowrow <darosenbloom@gmail.com>",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
@@ -20,19 +21,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/d34dman/drupal-jsonapi-params.git"
+    "url": "git+https://github.com/rowrowrowrow/enhanced-drupal-jsonapi-params.git"
   },
   "keywords": [
     "Drupal",
     "JSON-API",
-    "javascript"
+    "javascript",
+    "params",
+    "query"
   ],
-  "author": "D34dMan",
+  "author": "rowrowrowrow",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/d34dman/drupal-jsonapi-params/issues"
+    "url": "https://github.com/rowrowrowrow/enhanced-drupal-jsonapi-params/issues"
   },
-  "homepage": "https://github.com/d34dman/drupal-jsonapi-params#readme",
+  "homepage": "https://github.com/rowrowrowrow/enhanced-drupal-jsonapi-params#readme",
   "devDependencies": {
     "@types/jest": "^25.1.2",
     "@types/qs": "^6.9.1",

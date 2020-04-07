@@ -31,6 +31,14 @@ interface FieldItems {
   [key: string]: string;
 }
 
+interface Params {
+  filter?: FilterItems | undefined;
+  sort?: Array<string> | string;
+  include?: Array<string> | string;
+  page?: PageItem | undefined;
+  fields?: FieldItems | undefined;
+}
+
 export class DrupalJsonApiParams {
   private filter: FilterItems = {};
   private sort: string[] = [];
@@ -100,6 +108,27 @@ export class DrupalJsonApiParams {
       key = Object.keys(obj).length.toString();
     }
     return key;
+  }
+
+  public mergeQueryObject(params: Params): DrupalJsonApiParams {
+    this.filter = { ...this.filter, ...params.filter};
+    if (params.sort !== undefined && !!params.sort.length) {
+      let a = params.sort;
+      if (typeof a === 'string') {
+        a = a.split(',');
+      }
+      this.sort = this.sort.concat(a);
+    }
+    if (params.include !== undefined && !!params.include.length) {
+      let a = params.include;
+      if (typeof a === 'string') {
+        a = a.split(',');
+      }
+      this.include = this.include.concat(a);
+    }
+    this.page = params.page !== undefined && params.page.limit !== undefined ? { ...params.page} : this.page;
+    this.fields = { ...params.fields};
+    return this;
   }
 
   public getQueryObject(): object {
