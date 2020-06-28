@@ -24,9 +24,9 @@ $ npm i drupal-jsonapi-params
 
 ### import
 
-Import `DrupalJsonApiParams` from `drupal-jsonapi-params/lib`
+Import `DrupalJsonApiParams` from `drupal-jsonapi-params`
 ```js
-import {DrupalJsonApiParams} from 'drupal-jsonapi-params/lib';
+import {DrupalJsonApiParams} from 'drupal-jsonapi-params';
 
 const apiParams = new DrupalJsonApiParams();
 ```
