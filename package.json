@@ -34,15 +34,15 @@
   },
   "homepage": "https://github.com/d34dman/drupal-jsonapi-params#readme",
   "devDependencies": {
-    "@types/jest": "^25.1.2",
-    "@types/qs": "^6.9.1",
-    "codecov": "^3.6.5",
-    "jest": "^25.1.0",
+    "@types/jest": "^25.2.3",
+    "@types/qs": "^6.9.3",
+    "codecov": "^3.7.0",
+    "jest": "^25.5.4",
     "prettier": "^1.19.1",
-    "ts-jest": "^25.2.0",
-    "tslint": "^6.0.0",
+    "ts-jest": "^25.5.1",
+    "tslint": "^6.1.2",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.7.5"
+    "typescript": "^3.9.5"
   },
   "dependencies": {
     "qs": "^6.9.1"
