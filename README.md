@@ -77,7 +77,7 @@ Used to restrict items returned in a listing.
 | Params | Type | Description |
 | ---   | ---  | ---         |
 | path     | `string` | A 'path' identifies a field on a resource
-| value    | `string` | A 'value' is the thing you compare against
+| value    | `string|string[]` | A 'value' is the thing you compare against. For operators like "IN" which supports multiple parameters, you can supply an array.
 | operator | `string` | (Optional) An 'operator' is a method of comparison 
 | group    | `string` | (Optional) Name of the group, the filter belongs to
 
