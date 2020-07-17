@@ -68,8 +68,12 @@ export class DrupalJsonApiParams {
     return this;
   }
 
-  public addFilter(path: string, value: string | string[] | null, operator: string = '=', memberOf?: string): DrupalJsonApiParams {
-
+  public addFilter(
+    path: string,
+    value: string | string[] | null,
+    operator: string = '=',
+    memberOf?: string,
+  ): DrupalJsonApiParams {
     const name = this.getIndexId(this.filter, path);
 
     // Allow null values only for IS NULL and IS NOT NULL operators.
@@ -80,7 +84,7 @@ export class DrupalJsonApiParams {
       this.filter[name] = {
         condition: {
           path,
-          ...( { operator }),
+          ...{ operator },
           ...(memberOf !== undefined && { memberOf }),
         },
       };
@@ -95,7 +99,7 @@ export class DrupalJsonApiParams {
         condition: {
           path,
           value,
-          ...({ operator }),
+          ...{ operator },
           ...(memberOf !== undefined && { memberOf }),
         },
       };
