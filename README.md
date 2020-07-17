@@ -93,13 +93,13 @@ Following values can be used for the operator. If none is provided, it assumes "
   'IS NULL', 'IS NOT NULL'
 ```
 
-NOTE: Make sure you match the value supplied based on the operators used,
+**NOTE: Make sure you match the value supplied based on the operators used as per the table below**
 
 | Value Type | Operator | Description |
 | ---   | ---  | ---         |
-| `string`     | `=`, `<>`, `>`, `>=`, `<`, `<=`, `STARTS_WITH`, `CONTAINS`, `ENDS_WITH` |
-| `string[]`    | `IN`, `NOT IN` |
-| `string[]` Array of size 2 | `BETWEEN`, `NOT BETWEEN` | The first item is used for min (start of the range), and the second value is used for max (end of the range).
+| `string`     | `=`, `<>`, `>`, `>=`, `<`, `<=`, `STARTS_WITH`, `CONTAINS`, `ENDS_WITH` | |
+| `string[]`    | `IN`, `NOT IN` | |
+| `string[]` _size 2_ | `BETWEEN`, `NOT BETWEEN` | The first item is used for min (start of the range), and the second item is used for max (end of the range).
 | `null`    | `IS NULL`, `IS NOT NULL` | Must use `null`
 
 
