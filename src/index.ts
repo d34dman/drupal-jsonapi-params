@@ -8,7 +8,7 @@ interface FilterItem {
   condition?: {
     operator?: string;
     path: string;
-    value: string;
+    value?: string;
     memberOf?: string;
   };
   group?: GroupItem;
@@ -68,8 +68,14 @@ export class DrupalJsonApiParams {
     return this;
   }
 
-  public addFilter(path: string, value: string, operator: string = '=', memberOf?: string): DrupalJsonApiParams {
-    if (operator === '=' && memberOf === undefined && this.filter[path] === undefined) {
+  public addFilter(path: string, value: string | null, operator: string = '=', memberOf?: string): DrupalJsonApiParams {
+    // Validate filter is not null, where value is required.
+    if (value === null) {
+      if (!(operator === 'IS NULL' || operator === 'IS NOT NULL')) {
+        throw new TypeError('Value cannot be null.');
+      }
+    }
+    if (value !== null && operator === '=' && memberOf === undefined && this.filter[path] === undefined) {
       this.filter[path] = value;
       return this;
     }
@@ -79,7 +85,7 @@ export class DrupalJsonApiParams {
     this.filter[name] = {
       condition: {
         path,
-        value,
+        ...(value !== null && { value }),
         ...(operator !== '=' && { operator }),
         ...(memberOf !== undefined && { memberOf }),
       },
