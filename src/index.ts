@@ -8,7 +8,7 @@ interface FilterItem {
   condition?: {
     operator?: string;
     path: string;
-    value?: string;
+    value?: string | string[];
     memberOf?: string;
   };
   group?: GroupItem;
@@ -68,24 +68,49 @@ export class DrupalJsonApiParams {
     return this;
   }
 
-  public addFilter(path: string, value: string | null, operator: string = '=', memberOf?: string): DrupalJsonApiParams {
-    // Validate filter is not null, where value is required.
+  public addFilter(path: string, value: string | string[] | null, operator: string = '=', memberOf?: string): DrupalJsonApiParams {
+
+    const name = this.getIndexId(this.filter, path);
+
+    // Allow null values only for IS NULL and IS NOT NULL operators.
     if (value === null) {
       if (!(operator === 'IS NULL' || operator === 'IS NOT NULL')) {
-        throw new TypeError('Value cannot be null.');
+        throw new TypeError('Value cannot be null for this operator.');
       }
+      this.filter[name] = {
+        condition: {
+          path,
+          ...( { operator }),
+          ...(memberOf !== undefined && { memberOf }),
+        },
+      };
+      return this;
     }
-    if (value !== null && operator === '=' && memberOf === undefined && this.filter[path] === undefined) {
+
+    if (Array.isArray(value)) {
+      if (!(operator === 'BETWEEN' || operator === 'NOT BETWEEN')) {
+        throw new TypeError('Value cannot be an array for this operator.');
+      }
+      this.filter[name] = {
+        condition: {
+          path,
+          value: value,
+          ...({ operator }),
+          ...(memberOf !== undefined && { memberOf }),
+        },
+      };
+      return this;
+    }
+    // Validate filter
+    if (operator === '=' && memberOf === undefined && this.filter[path] === undefined) {
       this.filter[path] = value;
       return this;
     }
 
-    const name = this.getIndexId(this.filter, path);
-
     this.filter[name] = {
       condition: {
         path,
-        ...(value !== null && { value }),
+        value: value,
         ...(operator !== '=' && { operator }),
         ...(memberOf !== undefined && { memberOf }),
       },
