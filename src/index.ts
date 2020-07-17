@@ -94,7 +94,7 @@ export class DrupalJsonApiParams {
       this.filter[name] = {
         condition: {
           path,
-          value: value,
+          value,
           ...({ operator }),
           ...(memberOf !== undefined && { memberOf }),
         },
@@ -110,7 +110,7 @@ export class DrupalJsonApiParams {
     this.filter[name] = {
       condition: {
         path,
-        value: value,
+        value,
         ...(operator !== '=' && { operator }),
         ...(memberOf !== undefined && { memberOf }),
       },
