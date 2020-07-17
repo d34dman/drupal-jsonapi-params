@@ -24,11 +24,47 @@ test('Filter for `status = null`', () => {
   expect(() => {api.addFilter('status', null)}).toThrow(TypeError);
 });
 
+
+test('Filter for `status = [1, 20]`', () => {
+  let api = new DrupalJsonApiParams();
+  expect(() => {api.addFilter('status', ['1', '20'])}).toThrow(TypeError);
+});
+
 test('Filter for `status IS NULL`', () => {
   let api = new DrupalJsonApiParams();
   api.addFilter('status', null, 'IS NULL');
   expect(decodeURIComponent(api.getQueryString())).toBe('filter[status][condition][path]=status&filter[status][condition][operator]=IS NULL');
 });
+test('Filter for `status IS NULL` in valid', () => {
+  let api = new DrupalJsonApiParams();
+  api.addFilter('status', null, 'IS NULL', 'valid');
+  expect(decodeURIComponent(api.getQueryString())).toBe('filter[status][condition][path]=status&filter[status][condition][operator]=IS NULL&filter[status][condition][memberOf]=valid');
+});
+
+test('Filter for `status IS NOT NULL`', () => {
+  let api = new DrupalJsonApiParams();
+  api.addFilter('status', null, 'IS NOT NULL');
+  expect(decodeURIComponent(api.getQueryString())).toBe('filter[status][condition][path]=status&filter[status][condition][operator]=IS NOT NULL');
+});
+
+test('Filter for `changed is BETWEEN 0 AND 123456789`', () => {
+  let api = new DrupalJsonApiParams();
+  api.addFilter('changed', ['0', '123456789'], 'BETWEEN');
+  expect(decodeURIComponent(api.getQueryString())).toBe('filter[changed][condition][path]=changed&filter[changed][condition][value][0]=0&filter[changed][condition][value][1]=123456789&filter[changed][condition][operator]=BETWEEN');
+});
+
+test('Filter for `changed is BETWEEN 0 AND 123456789` in range', () => {
+  let api = new DrupalJsonApiParams();
+  api.addFilter('changed', ['0', '123456789'], 'BETWEEN', 'range');
+  expect(decodeURIComponent(api.getQueryString())).toBe('filter[changed][condition][path]=changed&filter[changed][condition][value][0]=0&filter[changed][condition][value][1]=123456789&filter[changed][condition][operator]=BETWEEN&filter[changed][condition][memberOf]=range');
+});
+
+test('Filter for `changed is NOT BETWEEN 0 AND 123456789`', () => {
+  let api = new DrupalJsonApiParams();
+  api.addFilter('changed', ['0', '123456789'], 'NOT BETWEEN');
+  expect(decodeURIComponent(api.getQueryString())).toBe('filter[changed][condition][path]=changed&filter[changed][condition][value][0]=0&filter[changed][condition][value][1]=123456789&filter[changed][condition][operator]=NOT BETWEEN');
+});
+
 
 test('Filter for `status = 1` && `status != 2` in group=publish_status', () => {
   let api = new DrupalJsonApiParams();
