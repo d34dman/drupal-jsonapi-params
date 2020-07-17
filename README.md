@@ -77,7 +77,7 @@ Used to restrict items returned in a listing.
 | Params | Type | Description |
 | ---   | ---  | ---         |
 | path     | `string` | A 'path' identifies a field on a resource
-| value    | `string|string[]` | A 'value' is the thing you compare against. For operators like "IN" which supports multiple parameters, you can supply an array.
+| value    | `string | string[] | null` | A 'value' is the thing you compare against. For operators like "IN" which supports multiple parameters, you can supply an array.
 | operator | `string` | (Optional) An 'operator' is a method of comparison 
 | group    | `string` | (Optional) Name of the group, the filter belongs to
 
@@ -92,6 +92,16 @@ Following values can be used for the operator. If none is provided, it assumes "
   'BETWEEN', 'NOT BETWEEN',
   'IS NULL', 'IS NOT NULL'
 ```
+
+NOTE: Make sure you match the value supplied based on the operators used,
+
+| Value Type | Operator | Description |
+| ---   | ---  | ---         |
+| `string`     | `=`, `<>`, `>`, `>=`, `<`, `<=`, `STARTS_WITH`, `CONTAINS`, `ENDS_WITH` |
+| `string[]`    | `IN`, `NOT IN` |
+| `string[]` Array of size 2 | `BETWEEN`, `NOT BETWEEN` | The first item is used for min (start of the range), and the second value is used for max (end of the range).
+| `null`    | `IS NULL`, `IS NOT NULL` | Must use `null`
+
 
 [Read more about filter in Drupal.org Documentation](https://www.drupal.org/docs/8/core/modules/jsonapi-module/filtering)
 
