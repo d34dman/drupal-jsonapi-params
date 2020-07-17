@@ -18,6 +18,18 @@ test('Filter for `status = 1` && `status = 2`', () => {
   );
 });
 
+
+test('Filter for `status = null`', () => {
+  let api = new DrupalJsonApiParams();
+  expect(() => {api.addFilter('status', null)}).toThrow(TypeError);
+});
+
+test('Filter for `status IS NULL`', () => {
+  let api = new DrupalJsonApiParams();
+  api.addFilter('status', null, 'IS NULL');
+  expect(decodeURIComponent(api.getQueryString())).toBe('filter[status][condition][path]=status&filter[status][condition][operator]=IS NULL');
+});
+
 test('Filter for `status = 1` && `status != 2` in group=publish_status', () => {
   let api = new DrupalJsonApiParams();
   api
