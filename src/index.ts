@@ -79,7 +79,7 @@ export class DrupalJsonApiParams {
     // Allow null values only for IS NULL and IS NOT NULL operators.
     if (value === null) {
       if (!(operator === 'IS NULL' || operator === 'IS NOT NULL')) {
-        throw new TypeError('Value cannot be null for this operator.');
+        throw new TypeError(`Value cannot be null for the operator "${operator}"`);
       }
       this.filter[name] = {
         condition: {
@@ -93,7 +93,7 @@ export class DrupalJsonApiParams {
 
     if (Array.isArray(value)) {
       if (!(operator === 'BETWEEN' || operator === 'NOT BETWEEN')) {
-        throw new TypeError('Value cannot be an array for this operator.');
+        throw new TypeError(`Value cannot be an array for the operator "${operator}"`);
       }
       this.filter[name] = {
         condition: {
