@@ -105,6 +105,25 @@ Following values can be used for the operator. If none is provided, it assumes "
 
 [Read more about filter in Drupal.org Documentation](https://www.drupal.org/docs/8/core/modules/jsonapi-module/filtering)
 
+### addFilterQuery
+
+Used to add filter queries in an SQL-like string format.
+
+| Params | Type | Description |
+| ---   | ---  | ---         |
+| query     | `string` | A query string representing a single filter (format: "\<path\> \<operator\> '\<value\>' \<memberOf\> \<groupName\>").
+
+#### usage example
+
+```js
+import {DrupalJsonApiParams} from 'drupal-jsonapi-params';
+
+const apiParams = new DrupalJsonApiParams();
+
+apiParams.addFilterQuery("pet = 'cat' memberOf animals")
+```
+
+
 ### addGroup
 
 Used to group Filters. Groups can be nested too.
