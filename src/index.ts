@@ -1,5 +1,5 @@
 import qs = require('qs');
-import Operators from './Operators.ts'
+import Operators from './operators.ts'
 
 interface FilterItems {
   [key: string]: FilterItem | string;
