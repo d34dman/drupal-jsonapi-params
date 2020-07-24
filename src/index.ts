@@ -27,15 +27,25 @@ interface FieldItems {
   [key: string]: string;
 }
 
+interface DrupalJsonApiParamsStore {
+  filter: FilterItems;
+  sort: string[];
+  include: string[];
+  page: PageItem | undefined;
+  fields: FieldItems;
+}
+
 export class DrupalJsonApiParams {
-  private filter: FilterItems = {};
-  private sort: string[] = [];
-  private include: string[] = [];
-  private page: PageItem | undefined = undefined;
-  private fields: FieldItems = {};
+  private data: DrupalJsonApiParamsStore = {
+    filter: {},
+    sort: [],
+    include: [],
+    page: undefined,
+    fields: {},
+  }; 
 
   public addFields(type: string, fields: string[]): DrupalJsonApiParams {
-    this.fields[type] = fields.join(',');
+    this.data.fields[type] = fields.join(',');
     return this;
   }
 
@@ -44,22 +54,22 @@ export class DrupalJsonApiParams {
     if (direction !== undefined && direction === 'DESC') {
       prefix = '-';
     }
-    this.sort = this.sort.concat(prefix + path);
+    this.data.sort = this.data.sort.concat(prefix + path);
     return this;
   }
 
   public addPageLimit(limit: number): DrupalJsonApiParams {
-    this.page = { limit };
+    this.data.page = { limit };
     return this;
   }
 
   public addInclude(fields: string[]): DrupalJsonApiParams {
-    this.include = this.include.concat(fields);
+    this.data.include = this.data.include.concat(fields);
     return this;
   }
 
   public addGroup(name: string, conjunction: string = 'OR', memberOf?: string): DrupalJsonApiParams {
-    this.filter[name] = {
+    this.data.filter[name] = {
       group: {
         conjunction,
         ...(memberOf !== undefined && { memberOf }),
@@ -74,14 +84,14 @@ export class DrupalJsonApiParams {
     operator: string = '=',
     memberOf?: string,
   ): DrupalJsonApiParams {
-    const name = this.getIndexId(this.filter, path);
+    const name = this.getIndexId(this.data.filter, path);
 
     // Allow null values only for IS NULL and IS NOT NULL operators.
     if (value === null) {
       if (!(operator === 'IS NULL' || operator === 'IS NOT NULL')) {
         throw new TypeError(`Value cannot be null for the operator "${operator}"`);
       }
-      this.filter[name] = {
+      this.data.filter[name] = {
         condition: {
           path,
           ...{ operator },
@@ -95,7 +105,7 @@ export class DrupalJsonApiParams {
       if (!(operator === 'BETWEEN' || operator === 'NOT BETWEEN')) {
         throw new TypeError(`Value cannot be an array for the operator "${operator}"`);
       }
-      this.filter[name] = {
+      this.data.filter[name] = {
         condition: {
           path,
           value,
@@ -106,12 +116,12 @@ export class DrupalJsonApiParams {
       return this;
     }
     // Validate filter
-    if (operator === '=' && memberOf === undefined && this.filter[path] === undefined) {
-      this.filter[path] = value;
+    if (operator === '=' && memberOf === undefined && this.data.filter[path] === undefined) {
+      this.data.filter[path] = value;
       return this;
     }
 
-    this.filter[name] = {
+    this.data.filter[name] = {
       condition: {
         path,
         value,
@@ -135,11 +145,11 @@ export class DrupalJsonApiParams {
 
   public getQueryObject(): object {
     const data = {
-      ...(this.filter !== {} && { filter: this.filter }),
-      ...(!!this.include.length && { include: this.include.join(',') }),
-      ...(this.page !== undefined && { page: this.page }),
-      ...(!!this.sort.length && { sort: this.sort.join(',') }),
-      ...(this.fields !== {} && { fields: this.fields }),
+      ...(this.data.filter !== {} && { filter: this.data.filter }),
+      ...(!!this.data.include.length && { include: this.data.include.join(',') }),
+      ...(this.data.page !== undefined && { page: this.data.page }),
+      ...(!!this.data.sort.length && { sort: this.data.sort.join(',') }),
+      ...(this.data.fields !== {} && { fields: this.data.fields }),
     };
     return data;
   }
