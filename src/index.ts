@@ -158,4 +158,35 @@ export class DrupalJsonApiParams {
     const data = this.getQueryObject();
     return qs.stringify(data);
   }
+
+  public clear() {
+    this.data = {
+      filter: {},
+      sort: [],
+      include: [],
+      page: undefined,
+      fields: {},
+    };
+    return this;
+  }
+  
+  public initializeWithQueryObject(input: any) {
+    this.clear();
+    if (input.filter !== undefined) {
+      this.data.filter = input.filter;
+    }
+    if (input.include !== undefined) {
+      this.data.include = input.include.split(',');
+    }
+    if (input.page !== undefined) {
+      this.data.page = input.page;
+    }
+    if (input.sort !== undefined) {
+      this.data.sort = input.sort.split(',');
+    }
+    if (input.fields !== undefined) {
+      this.data.fields = input.fields;
+    }
+    return this;
+  }
 }
