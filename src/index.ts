@@ -189,4 +189,10 @@ export class DrupalJsonApiParams {
     }
     return this;
   }
+
+  public initializeWithQueryString(input: string) {
+    this.clear();
+    this.initializeWithQueryObject(qs.parse(input));
+  }
+
 }

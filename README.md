@@ -156,3 +156,23 @@ The name of this method might be miss leading. Use this to explicitely request f
 | ---   | ---  | ---         |
 | type   | `string`   | Resource type
 | fields | ``string[]`` | Array of field names in the given resource type
+
+---
+
+## Helper methods
+
+### clear
+
+Clears all query parameter constructed so far.
+
+### getQueryObject
+
+Get object representation of the query object generated so far.
+
+### initializeWithQueryObject
+
+Re-initialize with previously stored data from `getQueryObject`
+
+### initializeWithQueryString
+
+Re-initialize with previously stored data from `getQueryString`
