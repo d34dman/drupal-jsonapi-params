@@ -1,7 +1,7 @@
 import { DrupalJsonApiParams } from '../index';
 test('Empty Default Values', () => {
   let api = new DrupalJsonApiParams();
-  let obj = api.getQueryObject();  
+  let obj = api.getQueryObject();
   expect(api.getQueryString()).toBe('');
   api.clear();
   expect(decodeURIComponent(api.getQueryString())).toBe('');
@@ -14,7 +14,7 @@ test('Empty Default Values', () => {
 test('Filter for `status = 1`', () => {
   let api = new DrupalJsonApiParams();
   api.addFilter('status', '1');
-  let obj = api.getQueryObject();  
+  let obj = api.getQueryObject();
   expect(decodeURIComponent(api.getQueryString())).toBe('filter[status]=1');
   api.clear();
   expect(decodeURIComponent(api.getQueryString())).toBe('');
@@ -64,7 +64,7 @@ test("Nova's Ark", () => {
     .addSort('id', 'DESC')
     .addSort('uid')
     .addSort('status');
-  let obj = api.getQueryObject();  
+  let obj = api.getQueryObject();
   expect(decodeURIComponent(api.getQueryString())).toBe(
     'filter[4][condition][path]=status&filter[4][condition][value]=2&filter[4][condition][operator]=!=&filter[4][condition][memberOf]=publish_status&filter[publish_status][group][conjunction]=OR&filter[publish_status][group][memberOf]=parent_group&filter[child_group_B][group][conjunction]=AND&filter[child_group_B][group][memberOf]=parent_group&filter[parent_group][group][conjunction]=AND&filter[status]=1&include=field_a.id,field_b.uid,field_c.tid&page[limit]=5&sort=-id,uid,status&fields[node--article]=field_a.id,field_b.uid,field_c.tid',
   );
@@ -74,5 +74,4 @@ test("Nova's Ark", () => {
   expect(decodeURIComponent(api.getQueryString())).toBe(
     'filter[4][condition][path]=status&filter[4][condition][value]=2&filter[4][condition][operator]=!=&filter[4][condition][memberOf]=publish_status&filter[publish_status][group][conjunction]=OR&filter[publish_status][group][memberOf]=parent_group&filter[child_group_B][group][conjunction]=AND&filter[child_group_B][group][memberOf]=parent_group&filter[parent_group][group][conjunction]=AND&filter[status]=1&include=field_a.id,field_b.uid,field_c.tid&page[limit]=5&sort=-id,uid,status&fields[node--article]=field_a.id,field_b.uid,field_c.tid',
   );
-
 });

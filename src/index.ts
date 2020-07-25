@@ -42,7 +42,7 @@ export class DrupalJsonApiParams {
     include: [],
     page: undefined,
     fields: {},
-  }; 
+  };
 
   public addFields(type: string, fields: string[]): DrupalJsonApiParams {
     this.data.fields[type] = fields.join(',');
@@ -169,7 +169,7 @@ export class DrupalJsonApiParams {
     };
     return this;
   }
-  
+
   public initializeWithQueryObject(input: any) {
     this.clear();
     if (input.filter !== undefined) {
@@ -194,5 +194,4 @@ export class DrupalJsonApiParams {
     this.clear();
     this.initializeWithQueryObject(qs.parse(input));
   }
-
 }
