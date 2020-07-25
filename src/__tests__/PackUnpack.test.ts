@@ -7,6 +7,8 @@ test('Empty Default Values', () => {
   expect(decodeURIComponent(api.getQueryString())).toBe('');
   api.initializeWithQueryObject(obj);
   expect(decodeURIComponent(api.getQueryString())).toBe('');
+  api.initializeWithQueryObject({});
+  expect(decodeURIComponent(api.getQueryString())).toBe('');
 });
 
 test('Filter for `status = 1`', () => {
