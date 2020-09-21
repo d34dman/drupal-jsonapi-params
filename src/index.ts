@@ -102,8 +102,18 @@ export class DrupalJsonApiParams {
     }
 
     if (Array.isArray(value)) {
-      if (!(operator === 'BETWEEN' || operator === 'NOT BETWEEN')) {
-        throw new TypeError(`Value cannot be an array for the operator "${operator}"`);
+      switch (operator) {
+        case 'BETWEEN':
+        case 'NOT BETWEEN':
+          if (value.length !== 2) {
+            throw new TypeError(`Value must consists of 2 items for the "${operator}"`);
+          }
+          break;
+        case 'IN':
+        case 'NOT IN':
+          break;
+        default:
+          throw new TypeError(`Value cannot be an array for the operator "${operator}"`);
       }
       this.data.filter[name] = {
         condition: {

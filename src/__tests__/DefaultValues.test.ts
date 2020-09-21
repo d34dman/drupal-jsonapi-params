@@ -71,11 +71,33 @@ test('Filter for `changed is BETWEEN 0 AND 123456789` in range', () => {
   );
 });
 
+test('Filter for `changed is BETWEEN 0 AND 2 AND 2` in range', () => {
+  let api = new DrupalJsonApiParams();
+  expect(() => {
+    api.addFilter('changed', ['0', '1', '2'], 'BETWEEN', 'range');
+  }).toThrow(TypeError);
+});
+
+test('Filter for `changed is BETWEEN 0` in range', () => {
+  let api = new DrupalJsonApiParams();
+  expect(() => {
+    api.addFilter('changed', ['0'], 'BETWEEN', 'range');
+  }).toThrow(TypeError);
+});
+
 test('Filter for `changed is NOT BETWEEN 0 AND 123456789`', () => {
   let api = new DrupalJsonApiParams();
   api.addFilter('changed', ['0', '123456789'], 'NOT BETWEEN');
   expect(decodeURIComponent(api.getQueryString())).toBe(
     'filter[changed][condition][path]=changed&filter[changed][condition][value][0]=0&filter[changed][condition][value][1]=123456789&filter[changed][condition][operator]=NOT BETWEEN',
+  );
+});
+
+test('Filter for `id IN ["1", "2", "3"]`', () => {
+  let api = new DrupalJsonApiParams();
+  api.addFilter('id', ['1', '2', '3'], 'IN');
+  expect(decodeURIComponent(api.getQueryString())).toBe(
+    'filter[id][condition][path]=id&filter[id][condition][value][0]=1&filter[id][condition][value][1]=2&filter[id][condition][value][2]=3&filter[id][condition][operator]=IN',
   );
 });
 
