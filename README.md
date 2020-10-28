@@ -63,14 +63,15 @@ apiParams
   .addSort('status');
 
 const urlencodedQueryString = apiParams.getQueryString();
+const queryString = apiParams.getQueryString({ encode: false });
 
 ```
 
 ## API
 
-### getQueryString
+### getQueryString [options?]
 
-Returns urlencoded query string which can be used in api calls.
+Returns query string which can be used in api calls. By default the output is URI encoded. Options can be passed to control the [qs.stringifying](https://github.com/ljharb/qs#stringifying) internally used.
 
 ### addFilter
 
