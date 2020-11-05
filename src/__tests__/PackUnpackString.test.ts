@@ -4,22 +4,29 @@ test('Empty Default Values', () => {
   let queryString = api.getQueryString();
   expect(api.getQueryString()).toBe('');
   api.clear();
-  expect(decodeURIComponent(api.getQueryString())).toBe('');
+  expect(api.getQueryString()).toBe('');
   api.initializeWithQueryString(queryString);
-  expect(decodeURIComponent(api.getQueryString())).toBe('');
+  expect(api.getQueryString()).toBe('');
   api.initializeWithQueryString('');
-  expect(decodeURIComponent(api.getQueryString())).toBe('');
+  expect(api.getQueryString()).toBe('');
 });
 
 test('Filter for `status = 1`', () => {
   let api = new DrupalJsonApiParams();
   api.addFilter('status', '1');
   let queryString = api.getQueryString();
-  expect(decodeURIComponent(api.getQueryString())).toBe('filter[status]=1');
+  expect(api.getQueryString({ encode: false })).toBe('filter[status]=1');
   api.clear();
-  expect(decodeURIComponent(api.getQueryString())).toBe('');
+  expect(api.getQueryString()).toBe('');
   api.initializeWithQueryString(queryString);
-  expect(decodeURIComponent(api.getQueryString())).toBe('filter[status]=1');
+  expect(api.getQueryString({ encode: false })).toBe('filter[status]=1');
+});
+
+test('Filter for `text = "\\/ []&?"` URI encoded', () => {
+  let api = new DrupalJsonApiParams();
+  api.addFilter('text', `\/ []&?`);
+  let queryString = api.getQueryString();
+  expect(api.getQueryString()).toBe(`filter%5Btext%5D=%2F%20%5B%5D%26%3F`);
 });
 
 test("Nova's Ark", () => {
@@ -44,7 +51,7 @@ test("Nova's Ark", () => {
     .addSort('uid')
     .addSort('status');
   api.clear();
-  expect(decodeURIComponent(api.getQueryString())).toBe('');
+  expect(api.getQueryString()).toBe('');
   api
     // Add Group within Groups.
     .addGroup('publish_status', 'OR', 'parent_group')
@@ -65,13 +72,13 @@ test("Nova's Ark", () => {
     .addSort('uid')
     .addSort('status');
   let queryString = api.getQueryString();
-  expect(decodeURIComponent(api.getQueryString())).toBe(
+  expect(api.getQueryString({ encode: false })).toBe(
     'filter[4][condition][path]=status&filter[4][condition][value]=2&filter[4][condition][operator]=!=&filter[4][condition][memberOf]=publish_status&filter[publish_status][group][conjunction]=OR&filter[publish_status][group][memberOf]=parent_group&filter[child_group_B][group][conjunction]=AND&filter[child_group_B][group][memberOf]=parent_group&filter[parent_group][group][conjunction]=AND&filter[status]=1&include=field_a.id,field_b.uid,field_c.tid&page[limit]=5&sort=-id,uid,status&fields[node--article]=field_a.id,field_b.uid,field_c.tid',
   );
   api.clear();
-  expect(decodeURIComponent(api.getQueryString())).toBe('');
+  expect(api.getQueryString()).toBe('');
   api.initializeWithQueryString(queryString);
-  expect(decodeURIComponent(api.getQueryString())).toBe(
+  expect(api.getQueryString({ encode: false })).toBe(
     'filter[4][condition][path]=status&filter[4][condition][value]=2&filter[4][condition][operator]=!=&filter[4][condition][memberOf]=publish_status&filter[publish_status][group][conjunction]=OR&filter[publish_status][group][memberOf]=parent_group&filter[child_group_B][group][conjunction]=AND&filter[child_group_B][group][memberOf]=parent_group&filter[parent_group][group][conjunction]=AND&filter[status]=1&include=field_a.id,field_b.uid,field_c.tid&page[limit]=5&sort=-id,uid,status&fields[node--article]=field_a.id,field_b.uid,field_c.tid',
   );
 });

@@ -164,9 +164,9 @@ export class DrupalJsonApiParams {
     return data;
   }
 
-  public getQueryString(): string {
+  public getQueryString(options?: object): string {
     const data = this.getQueryObject();
-    return qs.stringify(data);
+    return qs.stringify(data, options);
   }
 
   public clear() {
