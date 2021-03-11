@@ -6,7 +6,7 @@
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/drupal-jsonapi-params)
 ![npm type definitions](https://img.shields.io/npm/types/drupal-jsonapi-params)
 [![npm downloads](https://img.shields.io/npm/dt/drupal-jsonapi-params.svg?maxAge=2592000)](http://npmjs.com/package/drupal-jsonapi-params)
-
+[![Known Vulnerabilities](https://snyk.io/test/npm/drupal-jsonapi-params/1.1.12/badge.svg)](https://snyk.io/test/npm/drupal-jsonapi-params/1.1.12)
 
 The [JSON:API](https://jsonapi.org/) is now part of [Drupal](https://www.drupal.org/) Core.
 
