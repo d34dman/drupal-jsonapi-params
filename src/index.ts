@@ -35,7 +35,11 @@ interface DrupalJsonApiParamsStore {
   fields: FieldItems;
 }
 
-export class DrupalJsonApiParams {
+export interface DrupalJsonApiParamsInterface {
+  initialize(input: string | object | DrupalJsonApiParamsInterface): DrupalJsonApiParams;
+  getQueryObject(): object;
+}
+export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
   private data: DrupalJsonApiParamsStore = {
     filter: {},
     sort: [],
@@ -203,5 +207,29 @@ export class DrupalJsonApiParams {
   public initializeWithQueryString(input: string) {
     this.clear();
     this.initializeWithQueryObject(qs.parse(input));
+    return this;
+  }
+
+  public clone(input: DrupalJsonApiParamsInterface) {
+    const data = JSON.parse(JSON.stringify(input.getQueryObject()));
+    this.initializeWithQueryObject(data);
+    return this;
+  }
+
+  public initialize(input: string | object | DrupalJsonApiParamsInterface): DrupalJsonApiParams {
+    if (typeof input === 'object') {
+      try {
+        // if the input has getQueryObject() we attempt to clone.
+        (input as DrupalJsonApiParamsInterface).getQueryObject();
+        this.clone(input as DrupalJsonApiParamsInterface);
+      } catch (error) {
+        // In any case if cloning failed, we attempt to initialize
+        // with query object.
+        this.initializeWithQueryObject(input);
+      }
+    } else {
+      this.initializeWithQueryString(input);
+    }
+    return this;
   }
 }
