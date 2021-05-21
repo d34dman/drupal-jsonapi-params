@@ -170,6 +170,10 @@ Clears all query parameter constructed so far.
 
 Get object representation of the query object generated so far.
 
+### initialize
+
+Re-initialize with a query string/object or another instance of DrupalJsonApiParams
+
 ### initializeWithQueryObject
 
 Re-initialize with previously stored data from `getQueryObject`
