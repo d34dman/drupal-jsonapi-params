@@ -159,6 +159,26 @@ The name of this method might be miss leading. Use this to explicitely request f
 | fields | ``string[]`` | Array of field names in the given resource type
 
 ---
+### addCustomParam
+
+Use to add custom parameter to the query.
+
+|Params | Type | Description |
+| ---   | ---  | ---         |
+| input | `object` | The parameter object |
+
+E.g. usage
+
+```js
+apiParams
+  // To add `foo=bar` to the query.
+  .addCustomParam({foo: 'bar'})
+  // To add `foo[bar]=baz` to the query.
+  .addCustomParam({ foo: {bar: 'baz'}})
+  // To add `bar[0]=a&bar[1]=b&bar[2]=c` to the query.
+  .addCustomParam({ bar: ['a', 'b', 'c']})
+```
+
 
 ## Helper methods
 

@@ -52,6 +52,13 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
     fields: {},
   };
 
+  public addCustomParam(input: ParamBag<any>) {
+    this.data = {
+      ...this.data,
+      ...input
+    }
+  }
+
   public addFields(type: string, fields: string[]): DrupalJsonApiParams {
     this.data.fields[type] = fields.join(',');
     return this;
