@@ -55,8 +55,8 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
   public addCustomParam(input: ParamBag<any>) {
     this.data = {
       ...this.data,
-      ...input
-    }
+      ...input,
+    };
   }
 
   public addFields(type: string, fields: string[]): DrupalJsonApiParams {
@@ -198,8 +198,8 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
   public initializeWithQueryObject(input: any) {
     this.clear();
     const keys = Object.keys(input);
-    keys.forEach((key) => {
-      switch(key) {
+    keys.forEach(key => {
+      switch (key) {
         case 'sort':
           if (input.sort.length) {
             this.data.sort = input.sort.split(',');
