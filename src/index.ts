@@ -35,6 +35,10 @@ interface DrupalJsonApiParamsStore {
   fields: FieldItems;
 }
 
+interface ParamBag<TValue> {
+  [id: string]: TValue;
+}
+
 export interface DrupalJsonApiParamsInterface {
   initialize(input: string | object | DrupalJsonApiParamsInterface): DrupalJsonApiParams;
   getQueryObject(): object;
@@ -42,9 +46,9 @@ export interface DrupalJsonApiParamsInterface {
 export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
   private data: DrupalJsonApiParamsStore = {
     filter: {},
-    sort: [],
     include: [],
     page: undefined,
+    sort: [],
     fields: {},
   };
 
@@ -157,15 +161,17 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
     return key;
   }
 
-  public getQueryObject(): object {
-    const data = {
-      ...(this.data.filter !== {} && { filter: this.data.filter }),
-      ...(!!this.data.include.length && { include: this.data.include.join(',') }),
-      ...(this.data.page !== undefined && { page: this.data.page }),
-      ...(!!this.data.sort.length && { sort: this.data.sort.join(',') }),
-      ...(this.data.fields !== {} && { fields: this.data.fields }),
-    };
-    return data;
+  public getQueryObject(): ParamBag<any> {
+    let foo: ParamBag<any> = JSON.parse(JSON.stringify(this.data));
+    // let foo: ParamBag<any> = this.data;
+
+    if (!!this.data.include.length) {
+      foo.include = this.data.include.join(',');
+    }
+    if (!!this.data.sort.length) {
+      foo.sort = this.data.sort.join(',');
+    }
+    return foo;
   }
 
   public getQueryString(options?: object): string {
@@ -176,9 +182,9 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
   public clear() {
     this.data = {
       filter: {},
-      sort: [],
       include: [],
       page: undefined,
+      sort: [],
       fields: {},
     };
     return this;
@@ -186,21 +192,23 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
 
   public initializeWithQueryObject(input: any) {
     this.clear();
-    if (input.filter !== undefined) {
-      this.data.filter = input.filter;
-    }
-    if (input.include !== undefined) {
-      this.data.include = input.include.split(',');
-    }
-    if (input.page !== undefined) {
-      this.data.page = input.page;
-    }
-    if (input.sort !== undefined) {
-      this.data.sort = input.sort.split(',');
-    }
-    if (input.fields !== undefined) {
-      this.data.fields = input.fields;
-    }
+    const keys = Object.keys(input);
+    keys.forEach((key) => {
+      switch(key) {
+        case 'sort':
+          if (input.sort.length) {
+            this.data.sort = input.sort.split(',');
+          }
+          break;
+        case 'include':
+          if (input.include.length) {
+            this.data.include = input.include.split(',');
+          }
+          break;
+        default:
+          this.data[key as keyof DrupalJsonApiParamsStore] = input[key];
+      }
+    });
     return this;
   }
 
