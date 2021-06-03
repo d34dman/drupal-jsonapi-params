@@ -169,9 +169,7 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
   }
 
   public getQueryObject(): ParamBag<any> {
-    let foo: ParamBag<any> = JSON.parse(JSON.stringify(this.data));
-    // let foo: ParamBag<any> = this.data;
-
+    const foo: ParamBag<any> = JSON.parse(JSON.stringify(this.data));
     if (!!this.data.include.length) {
       foo.include = this.data.include.join(',');
     }
