@@ -14,17 +14,21 @@ test('Empty Default Values', () => {
 test('getDrupalJsonApiParams', () => {
   const getDrupalJsonApiParams = function(input: any = undefined) {
     return new DrupalJsonApiParams().initialize(input);
-  }
+  };
   // Defaults.
-  expect(getDrupalJsonApiParams()).toStrictEqual(expect.any(DrupalJsonApiParams))
-  expect(getDrupalJsonApiParams('')).toStrictEqual(expect.any(DrupalJsonApiParams))
-  expect(getDrupalJsonApiParams({})).toStrictEqual(expect.any(DrupalJsonApiParams))
-  expect(getDrupalJsonApiParams(new DrupalJsonApiParams().getQueryString())).toStrictEqual(expect.any(DrupalJsonApiParams))
-  expect(getDrupalJsonApiParams(new DrupalJsonApiParams().getQueryObject())).toStrictEqual(expect.any(DrupalJsonApiParams))
+  expect(getDrupalJsonApiParams()).toStrictEqual(expect.any(DrupalJsonApiParams));
+  expect(getDrupalJsonApiParams('')).toStrictEqual(expect.any(DrupalJsonApiParams));
+  expect(getDrupalJsonApiParams({})).toStrictEqual(expect.any(DrupalJsonApiParams));
+  expect(getDrupalJsonApiParams(new DrupalJsonApiParams().getQueryString())).toStrictEqual(
+    expect.any(DrupalJsonApiParams),
+  );
+  expect(getDrupalJsonApiParams(new DrupalJsonApiParams().getQueryObject())).toStrictEqual(
+    expect.any(DrupalJsonApiParams),
+  );
   // Incorrectly normalized query object.
-  const badObject = { include: [], sort: [] }
-  expect(getDrupalJsonApiParams(badObject)).toStrictEqual(expect.any(DrupalJsonApiParams))
-})
+  const badObject = { include: [], sort: [] };
+  expect(getDrupalJsonApiParams(badObject)).toStrictEqual(expect.any(DrupalJsonApiParams));
+});
 
 test('Filter for `status = 1`', () => {
   let api = new DrupalJsonApiParams();
