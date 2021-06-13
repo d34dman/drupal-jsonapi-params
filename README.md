@@ -14,9 +14,11 @@ The JSON:API specifications defines standard query parameters to be used to do f
 
 This module provides a helper Class to create the required query. While doing so, it also tries to optimise the query by using the short form, whenever possible.
 
+## Resources
+
+  [![Guide](https://img.shields.io/netlify/5aab3eb8-6c3e-48e7-b29e-f3e3013299c9?label=Guide&logo=netlify&style=for-the-badge)](https://drupal-js-sdk-docs.netlify.app/)
   
-  [![API Reference](https://img.shields.io/github/workflow/status/d34dman/drupal-jsonapi-params/CI/typedoc?label=API%20Reference&logo=github&style=for-the-badge)](https://d34dman.github.io/drupal-jsonapi-params/)
-  
+  [![API Reference](https://img.shields.io/github/workflow/status/d34dman/drupal-jsonapi-params/GitHub%20pages/master?label=API%20Reference&logo=github&style=for-the-badge)](https://d34dman.github.io/drupal-js-sdk/)
 ## Installation
 
 Install the package via `npm`:
