@@ -1,0 +1,13 @@
+{
+    "links": [{
+      "label": "NPM",
+      "url": "https://www.npmjs.com/package/drupal-jsonapi-params"
+    }, {
+      "label": "Source",
+      "url": "https://github.com/d34dman/drupal-jsonapi-params"
+    }],
+    "entryPoints": [
+      "./src/index.ts"
+    ]
+  }
+  

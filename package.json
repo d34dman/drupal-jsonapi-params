@@ -16,7 +16,8 @@
     "prepublishOnly": "npm test && npm run lint",
     "preversion": "npm run lint",
     "version": "npm run format && git add -A src",
-    "postversion": "git push && git push --tags"
+    "postversion": "git push && git push --tags",
+    "docs": "typedoc --options typedoc.json --out api --theme ./node_modules/typedoc-neo-theme/bin/default"
   },
   "repository": {
     "type": "git",
@@ -42,7 +43,8 @@
     "ts-jest": "^25.5.1",
     "tslint": "^6.1.2",
     "tslint-config-prettier": "^1.18.0",
-    "typedoc": "^0.20.35",
+    "typedoc": "^0.20.36",
+    "typedoc-neo-theme": "^1.1.1",
     "typescript": "^3.9.5"
   },
   "dependencies": {
