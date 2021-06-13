@@ -229,9 +229,7 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
     return this;
   }
 
-  public initialize(
-    input?: string | object | DrupalJsonApiParamsInterface
-  ): DrupalJsonApiParams {
+  public initialize(input?: string | object | DrupalJsonApiParamsInterface): DrupalJsonApiParams {
     if (input === undefined) {
       this.initializeWithQueryString('');
     } else if (typeof input === 'object') {
