@@ -27,7 +27,7 @@ jobs:
         run: npm run build
 
       - name: Generate typedoc
-        run: npm run docs:typedoc:build
+        run: npm run docs
 
       - name: Publish to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
