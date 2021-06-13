@@ -1,0 +1,428 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>drupal-jsonapi-params</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<ul class="results-priority" style="display:none">
+					</ul>
+					<a href="index.html" class="title">drupal-jsonapi-params</a>
+					&emsp;<a href="https://www.npmjs.com/package/drupal-jsonapi-params" class="title">NPM</a>
+					&emsp;<a href="https://github.com/d34dman/drupal-jsonapi-params" class="title">Source</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+			</ul>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-3 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<div class="col-7 offset-3 col-content">
+			<h1>Project drupal-jsonapi-params</h1>
+			<div class="tsd-panel tsd-typography">
+				<a href="#drupal-json-api-params" id="drupal-json-api-params" style="color: inherit; text-decoration: none;">
+					<h1>Drupal JSON-API Params</h1>
+				</a>
+				<p><a href="https://travis-ci.org/d34dman/drupal-jsonapi-params"><img src="https://travis-ci.org/d34dman/drupal-jsonapi-params.svg?branch=master" alt="Build Status"></a>
+					<a href="https://codecov.io/gh/d34dman/drupal-jsonapi-params"><img src="https://codecov.io/gh/d34dman/drupal-jsonapi-params/branch/master/graph/badge.svg" alt="codecov"></a>
+					<img src="https://img.shields.io/npm/v/drupal-jsonapi-params" alt="npm">
+					<img src="https://img.shields.io/bundlephobia/minzip/drupal-jsonapi-params" alt="npm bundle size">
+					<img src="https://img.shields.io/npm/types/drupal-jsonapi-params" alt="npm type definitions">
+					<a href="http://npmjs.com/package/drupal-jsonapi-params"><img src="https://img.shields.io/npm/dt/drupal-jsonapi-params.svg?maxAge=2592000" alt="npm downloads"></a>
+				<a href="https://snyk.io/test/npm/drupal-jsonapi-params/1.1.12"><img src="https://snyk.io/test/npm/drupal-jsonapi-params/1.1.12/badge.svg" alt="Known Vulnerabilities"></a></p>
+				<p>The <a href="https://jsonapi.org/">JSON:API</a> is now part of <a href="https://www.drupal.org/">Drupal</a> Core.</p>
+				<p>The JSON:API specifications defines standard query parameters to be used to do filtering, sorting, restricting fields that are returned, pagination and so on.</p>
+				<p>This module provides a helper Class to create the required query. While doing so, it also tries to optimise the query by using the short form, whenever possible.</p>
+				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+					<h2>Installation</h2>
+				</a>
+				<p>Install the package via <code>npm</code>:</p>
+				<pre><code class="language-sh"><span style="color: #000000">$ npm i drupal-jsonapi-params</span>
+</code></pre>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h2>Usage</h2>
+				</a>
+				<a href="#import" id="import" style="color: inherit; text-decoration: none;">
+					<h3>import</h3>
+				</a>
+				<p>Import <code>DrupalJsonApiParams</code> from <code>drupal-jsonapi-params</code></p>
+				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">DrupalJsonApiParams</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;drupal-jsonapi-params&#039;</span><span style="color: #000000">;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">apiParams</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">DrupalJsonApiParams</span><span style="color: #000000">();</span>
+</code></pre>
+				<a href="#require" id="require" style="color: inherit; text-decoration: none;">
+					<h3>require</h3>
+				</a>
+				<pre><code class="language-js"><span style="color: #0000FF">var</span><span style="color: #000000"> </span><span style="color: #001080">drupalJsonapiParams</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;drupal-jsonapi-params&quot;</span><span style="color: #000000">)</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">apiParams</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #001080">drupalJsonapiParams</span><span style="color: #000000">.</span><span style="color: #795E26">DrupalJsonApiParams</span><span style="color: #000000">();</span>
+</code></pre>
+				<pre><code class="language-js"><span style="color: #001080">apiParams</span>
+<span style="color: #000000">  </span><span style="color: #008000">// Add Group within Groups.</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">addGroup</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;publish_status&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;OR&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;parent_group&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">addGroup</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;child_group_B&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;AND&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;parent_group&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">addGroup</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;parent_group&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;AND&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">  </span><span style="color: #008000">// Add Filters.</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">addFilter</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;status&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;1&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">  </span><span style="color: #008000">// Add Filter to Group.</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">addFilter</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;status&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;2&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;!=&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;publish_status&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">  </span><span style="color: #008000">// Add Page Limit.</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">addPageLimit</span><span style="color: #000000">(</span><span style="color: #098658">5</span><span style="color: #000000">)</span>
+<span style="color: #000000">  </span><span style="color: #008000">// Add Fields.</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">addFields</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;node--article&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;field_a.id&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;field_b.uid&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;field_c.tid&#039;</span><span style="color: #000000">])</span>
+<span style="color: #000000">  </span><span style="color: #008000">// Add Includes.</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">addInclude</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;field_a.id&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;field_b.uid&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;field_c.tid&#039;</span><span style="color: #000000">])</span>
+<span style="color: #000000">  </span><span style="color: #008000">// Add multiple sort criterion.</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">addSort</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;id&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;DESC&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">addSort</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;uid&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">addSort</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;status&#039;</span><span style="color: #000000">);</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">urlencodedQueryString</span><span style="color: #000000"> = </span><span style="color: #001080">apiParams</span><span style="color: #000000">.</span><span style="color: #795E26">getQueryString</span><span style="color: #000000">();</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">queryString</span><span style="color: #000000"> = </span><span style="color: #001080">apiParams</span><span style="color: #000000">.</span><span style="color: #795E26">getQueryString</span><span style="color: #000000">({ </span><span style="color: #001080">encode:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> });</span>
+
+</code></pre>
+				<a href="#api" id="api" style="color: inherit; text-decoration: none;">
+					<h2>API</h2>
+				</a>
+				<a href="#getquerystring-options" id="getquerystring-options" style="color: inherit; text-decoration: none;">
+					<h3>getQueryString [options?]</h3>
+				</a>
+				<p>Returns query string which can be used in api calls. By default the output is URI encoded. Options can be passed to control the <a href="https://github.com/ljharb/qs#stringifying">qs.stringifying</a> internally used.</p>
+				<a href="#addfilter" id="addfilter" style="color: inherit; text-decoration: none;">
+					<h3>addFilter</h3>
+				</a>
+				<p>Used to restrict items returned in a listing.</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Params</th>
+							<th>Type</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>path</td>
+							<td><code>string</code></td>
+							<td>A &#39;path&#39; identifies a field on a resource</td>
+						</tr>
+						<tr>
+							<td>value</td>
+							<td><code>string</code></td>
+							<td>string[]</td>
+						</tr>
+						<tr>
+							<td>operator</td>
+							<td><code>string</code></td>
+							<td>(Optional) An &#39;operator&#39; is a method of comparison</td>
+						</tr>
+						<tr>
+							<td>group</td>
+							<td><code>string</code></td>
+							<td>(Optional) Name of the group, the filter belongs to</td>
+						</tr>
+				</tbody></table>
+				<p>Following values can be used for the operator. If none is provided, it assumes &quot;<code>=</code>&quot; by default.</p>
+				<pre><code><span style="color: #000000">  </span><span style="color: #A31515">&#039;=&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;&lt;&gt;&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&#039;&gt;&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;&gt;=&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;&lt;&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;&lt;=&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&#039;STARTS_WITH&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;CONTAINS&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;ENDS_WITH&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&#039;IN&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;NOT IN&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&#039;BETWEEN&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;NOT BETWEEN&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&#039;IS NULL&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;IS NOT NULL&#039;</span>
+</code></pre>
+				<p><strong>NOTE: Make sure you match the value supplied based on the operators used as per the table below</strong></p>
+				<table>
+					<thead>
+						<tr>
+							<th>Value Type</th>
+							<th>Operator</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td><code>string</code></td>
+							<td><code>=</code>, <code>&lt;&gt;</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>STARTS_WITH</code>, <code>CONTAINS</code>, <code>ENDS_WITH</code></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><code>string[]</code></td>
+							<td><code>IN</code>, <code>NOT IN</code></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><code>string[]</code> <em>size 2</em></td>
+							<td><code>BETWEEN</code>, <code>NOT BETWEEN</code></td>
+							<td>The first item is used for min (start of the range), and the second item is used for max (end of the range).</td>
+						</tr>
+						<tr>
+							<td><code>null</code></td>
+							<td><code>IS NULL</code>, <code>IS NOT NULL</code></td>
+							<td>Must use <code>null</code></td>
+						</tr>
+				</tbody></table>
+				<p><a href="https://www.drupal.org/docs/8/core/modules/jsonapi-module/filtering">Read more about filter in Drupal.org Documentation</a></p>
+				<a href="#addgroup" id="addgroup" style="color: inherit; text-decoration: none;">
+					<h3>addGroup</h3>
+				</a>
+				<p>Used to group Filters. Groups can be nested too.</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Params</th>
+							<th>Type</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>name</td>
+							<td><code>string</code></td>
+							<td>Name of the group</td>
+						</tr>
+						<tr>
+							<td>conjunction</td>
+							<td><code>string</code></td>
+							<td>(Optional) All groups have conjunctions and a conjunction is either <code>AND</code> or <code>OR</code>.</td>
+						</tr>
+						<tr>
+							<td>memberOf</td>
+							<td><code>string</code></td>
+							<td>(Optional) Name of the group, this group belongs to</td>
+						</tr>
+				</tbody></table>
+				<a href="#addinclude" id="addinclude" style="color: inherit; text-decoration: none;">
+					<h3>addInclude</h3>
+				</a>
+				<p>Used to add referenced resources inside same request. Thereby preventing additional api calls.</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Params</th>
+							<th>Type</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>fields</td>
+							<td><code>string[]</code></td>
+							<td>Array of field names</td>
+						</tr>
+				</tbody></table>
+				<p><a href="https://www.drupal.org/docs/8/modules/jsonapi/includes">Read more about Includes in Drupal.org Documentation</a></p>
+				<a href="#addsort" id="addsort" style="color: inherit; text-decoration: none;">
+					<h3>addSort</h3>
+				</a>
+				<p>Used to return the list of items in specific order.</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Params</th>
+							<th>Type</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>path</td>
+							<td><code>string</code></td>
+							<td>A &#39;path&#39; identifies a field on a resource</td>
+						</tr>
+						<tr>
+							<td>direction</td>
+							<td><code>string</code></td>
+							<td>Sort direction <code>ASC</code> or <code>DESC</code></td>
+						</tr>
+				</tbody></table>
+				<p><a href="https://www.drupal.org/docs/8/modules/jsonapi/sorting">Read more about Sort in Drupal.org Documentation</a></p>
+				<a href="#addpagelimit" id="addpagelimit" style="color: inherit; text-decoration: none;">
+					<h3>addPageLimit</h3>
+				</a>
+				<p>Use to restrict max amount of items returned in the listing. Using this for pagination is tricky, and make sure you read the following document on Drupal.org to implement it correctly.</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Params</th>
+							<th>Type</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>limit</td>
+							<td><code>number</code></td>
+							<td>Number of items to limit to</td>
+						</tr>
+				</tbody></table>
+				<p><a href="https://www.drupal.org/docs/8/core/modules/jsonapi-module/pagination">Read more about Pagination in Drupal.org Documentation</a></p>
+				<a href="#addfields" id="addfields" style="color: inherit; text-decoration: none;">
+					<h3>addFields</h3>
+				</a>
+				<p>The name of this method might be miss leading. Use this to explicitely request for specific fields on an entity.</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Params</th>
+							<th>Type</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>type</td>
+							<td><code>string</code></td>
+							<td>Resource type</td>
+						</tr>
+						<tr>
+							<td>fields</td>
+							<td><code>string[]</code></td>
+							<td>Array of field names in the given resource type</td>
+						</tr>
+				</tbody></table>
+				<hr>
+				<a href="#addcustomparam" id="addcustomparam" style="color: inherit; text-decoration: none;">
+					<h3>addCustomParam</h3>
+				</a>
+				<p>Use to add custom parameter to the query.</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Params</th>
+							<th>Type</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>input</td>
+							<td><code>object</code></td>
+							<td>The parameter object</td>
+						</tr>
+				</tbody></table>
+				<p>E.g. usage</p>
+				<pre><code class="language-js"><span style="color: #001080">apiParams</span>
+<span style="color: #000000">  </span><span style="color: #008000">// To add `foo=bar` to the query.</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">addCustomParam</span><span style="color: #000000">({</span><span style="color: #001080">foo:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;bar&#039;</span><span style="color: #000000">})</span>
+<span style="color: #000000">  </span><span style="color: #008000">// To add `foo[bar]=baz` to the query.</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">addCustomParam</span><span style="color: #000000">({ </span><span style="color: #001080">foo:</span><span style="color: #000000"> {</span><span style="color: #001080">bar:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;baz&#039;</span><span style="color: #000000">}})</span>
+<span style="color: #000000">  </span><span style="color: #008000">// To add `bar[0]=a&amp;bar[1]=b&amp;bar[2]=c` to the query.</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">addCustomParam</span><span style="color: #000000">({ </span><span style="color: #001080">bar:</span><span style="color: #000000"> [</span><span style="color: #A31515">&#039;a&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;b&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;c&#039;</span><span style="color: #000000">]})</span>
+</code></pre>
+				<a href="#helper-methods" id="helper-methods" style="color: inherit; text-decoration: none;">
+					<h2>Helper methods</h2>
+				</a>
+				<a href="#clear" id="clear" style="color: inherit; text-decoration: none;">
+					<h3>clear</h3>
+				</a>
+				<p>Clears all query parameter constructed so far.</p>
+				<a href="#getqueryobject" id="getqueryobject" style="color: inherit; text-decoration: none;">
+					<h3>getQueryObject</h3>
+				</a>
+				<p>Get object representation of the query object generated so far.</p>
+				<a href="#initialize" id="initialize" style="color: inherit; text-decoration: none;">
+					<h3>initialize</h3>
+				</a>
+				<p>Re-initialize with a query string/object or another instance of DrupalJsonApiParams</p>
+				<a href="#initializewithqueryobject" id="initializewithqueryobject" style="color: inherit; text-decoration: none;">
+					<h3>initializeWithQueryObject</h3>
+				</a>
+				<p>Re-initialize with previously stored data from <code>getQueryObject</code></p>
+				<a href="#initializewithquerystring" id="initializewithquerystring" style="color: inherit; text-decoration: none;">
+					<h3>initializeWithQueryString</h3>
+				</a>
+				<p>Re-initialize with previously stored data from <code>getQueryString</code></p>
+			</div>
+			<!--{&quot;options&quot;:&quot;typedoc.json&quot;,&quot;tsconfig&quot;:&quot;/home/runner/work/drupal-jsonapi-params/drupal-jsonapi-params&quot;,&quot;entryPoints&quot;:[&quot;./src/index.ts&quot;],&quot;exclude&quot;:[],&quot;externalPattern&quot;:[&quot;**/node_modules/**&quot;],&quot;excludeExternals&quot;:false,&quot;excludeNotDocumented&quot;:false,&quot;excludeInternal&quot;:false,&quot;excludePrivate&quot;:false,&quot;excludeProtected&quot;:false,&quot;disableSources&quot;:false,&quot;includes&quot;:&quot;&quot;,&quot;media&quot;:&quot;&quot;,&quot;watch&quot;:false,&quot;preserveWatchOutput&quot;:false,&quot;emit&quot;:false,&quot;out&quot;:&quot;api&quot;,&quot;json&quot;:&quot;&quot;,&quot;pretty&quot;:true,&quot;theme&quot;:&quot;./node_modules/typedoc-neo-theme/bin/default&quot;,&quot;highlightTheme&quot;:&quot;light-plus&quot;,&quot;name&quot;:&quot;&quot;,&quot;includeVersion&quot;:false,&quot;excludeTags&quot;:[],&quot;readme&quot;:&quot;&quot;,&quot;defaultCategory&quot;:&quot;Other&quot;,&quot;categoryOrder&quot;:[],&quot;categorizeByGroup&quot;:true,&quot;gitRevision&quot;:&quot;&quot;,&quot;gitRemote&quot;:&quot;origin&quot;,&quot;gaID&quot;:&quot;&quot;,&quot;gaSite&quot;:&quot;auto&quot;,&quot;hideGenerator&quot;:false,&quot;toc&quot;:[],&quot;disableOutputCheck&quot;:false,&quot;help&quot;:false,&quot;version&quot;:false,&quot;showConfig&quot;:false,&quot;plugin&quot;:[],&quot;logger&quot;:&quot;console&quot;,&quot;logLevel&quot;:1,&quot;listInvalidSymbolLinks&quot;:false,&quot;links&quot;:[{&quot;label&quot;:&quot;NPM&quot;,&quot;url&quot;:&quot;https://www.npmjs.com/package/drupal-jsonapi-params&quot;},{&quot;label&quot;:&quot;Source&quot;,&quot;url&quot;:&quot;https://github.com/d34dman/drupal-jsonapi-params&quot;}]}-->
+		</div>
+		<div class="col-2 col-menu secondary-menu">
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-class root">
+						<a href="classes/drupaljsonapiparams.html" class="tsd-kind-icon">Drupal<wbr>Json<wbr>Api<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface root">
+						<a href="interfaces/drupaljsonapiparamsinterface.html" class="tsd-kind-icon">Drupal<wbr>Json<wbr>Api<wbr>Params<wbr>Interface</a>
+					</li>
+					<li class=" tsd-kind-interface root">
+						<a href="interfaces/drupaljsonapiparamsstore.html" class="tsd-kind-icon">Drupal<wbr>Json<wbr>Api<wbr>Params<wbr>Store</a>
+					</li>
+					<li class=" tsd-kind-interface root">
+						<a href="interfaces/fielditems.html" class="tsd-kind-icon">Field<wbr>Items</a>
+					</li>
+					<li class=" tsd-kind-interface root">
+						<a href="interfaces/filteritem.html" class="tsd-kind-icon">Filter<wbr>Item</a>
+					</li>
+					<li class=" tsd-kind-interface root">
+						<a href="interfaces/filteritems.html" class="tsd-kind-icon">Filter<wbr>Items</a>
+					</li>
+					<li class=" tsd-kind-interface root">
+						<a href="interfaces/groupitem.html" class="tsd-kind-icon">Group<wbr>Item</a>
+					</li>
+					<li class=" tsd-kind-interface root">
+						<a href="interfaces/pageitem.html" class="tsd-kind-icon">Page<wbr>Item</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter root">
+						<a href="interfaces/parambag.html" class="tsd-kind-icon">Param<wbr>Bag</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
