@@ -56,6 +56,15 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
   };
 
   /**
+   * Optionaly initialize with a previously stored query/object/query string.
+   * 
+   * @category Init
+   */
+  public constructor(input?: string | object | DrupalJsonApiParamsInterface) {
+    this.initialize(input);
+  }
+
+  /**
    * Add custom parameter to the query.
    * 
    * E.g. usage
@@ -396,4 +405,5 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
     }
     return this;
   }
+
 }
