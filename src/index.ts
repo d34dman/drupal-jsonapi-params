@@ -57,7 +57,7 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
 
   /**
    * Optionaly initialize with a previously stored query/object/query string.
-   * 
+   *
    * @category Init
    */
   public constructor(input?: string | object | DrupalJsonApiParamsInterface) {
@@ -66,9 +66,9 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
 
   /**
    * Add custom parameter to the query.
-   * 
+   *
    * E.g. usage
-   * 
+   *
    * ```js
    * apiParams
    *   // To add `foo=bar` to the query.
@@ -78,9 +78,9 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
    *   // To add `bar[0]=a&bar[1]=b&bar[2]=c` to the query.
    *   .addCustomParam({ bar: ['a', 'b', 'c']})
    * ```
-   * 
+   *
    * @param input The parameter object
-   * 
+   *
    * @category Helper
    */
   public addCustomParam(input: ParamBag<any>) {
@@ -92,12 +92,12 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
 
   /**
    * Add JSON:API field.
-   * 
+   *
    * The name of this method might be miss leading. Use this to explicitely request for specific fields on an entity.
-   * 
+   *
    * @param type Resource type
    * @param fields Array of field names in the given resource type
-   * 
+   *
    * @category JSON:API Query
    */
   public addFields(type: string, fields: string[]): DrupalJsonApiParams {
@@ -107,14 +107,14 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
 
   /**
    * Add JSON:API sort.
-   * 
+   *
    * Used to return the list of items in specific order.
    *
    * [Read more about Sort in Drupal.org Documentation](https://www.drupal.org/docs/8/modules/jsonapi/sorting)
-   * 
+   *
    * @param path A 'path' identifies a field on a resource
    * @param direction Sort direction `ASC` or `DESC`
-   * 
+   *
    * @category JSON:API Query
    */
   public addSort(path: string, direction?: string): DrupalJsonApiParams {
@@ -128,15 +128,15 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
 
   /**
    * Add JSON:API page limit.
-   * 
-   * Use to restrict max amount of items returned in the listing. 
-   * Using this for pagination is tricky, and make sure you read 
+   *
+   * Use to restrict max amount of items returned in the listing.
+   * Using this for pagination is tricky, and make sure you read
    * the following document on Drupal.org to implement it correctly.
-   * 
+   *
    * [Read more about Pagination in Drupal.org Documentation](https://www.drupal.org/docs/8/core/modules/jsonapi-module/pagination)
-   * 
-   * @param limit Number of items to limit to 
-   * 
+   *
+   * @param limit Number of items to limit to
+   *
    * @category JSON:API Query
    */
   public addPageLimit(limit: number): DrupalJsonApiParams {
@@ -146,12 +146,12 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
 
   /**
    * Add JSON:API include.
-   * 
-   * Used to add referenced resources inside same request. 
+   *
+   * Used to add referenced resources inside same request.
    * Thereby preventing additional api calls.
-   * 
+   *
    * [Read more about Includes in Drupal.org Documentation](https://www.drupal.org/docs/8/modules/jsonapi/includes)
-   * 
+   *
    * @param fields Array of field names
    *
    * @category JSON:API Query
@@ -163,11 +163,11 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
 
   /**
    * Add JSON:API group.
-   * 
+   *
    * @param name Name of the group
    * @param conjunction All groups have conjunctions and a conjunction is either `AND` or `OR`.
    * @param memberOf Name of the group, this group belongs to
-   * 
+   *
    * @category JSON:API Query
    */
   public addGroup(name: string, conjunction: string = 'OR', memberOf?: string): DrupalJsonApiParams {
@@ -182,7 +182,7 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
 
   /**
    * Add JSON:API filter.
-   * 
+   *
    * Following values can be used for the operator. If none is provided, it assumes "`=`" by default.
    * ```
    *   '=', '<>',
@@ -192,24 +192,24 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
    *   'BETWEEN', 'NOT BETWEEN',
    *   'IS NULL', 'IS NOT NULL'
    * ```
-   * 
+   *
    * **NOTE: Make sure you match the value supplied based on the operators used as per the table below**
-   * 
+   *
    * | Value Type | Operator | Comment |
    * | ---   | ---  | ---         |
    * | `string`     | `=`, `<>`, `>`, `>=`, `<`, `<=`, `STARTS_WITH`, `CONTAINS`, `ENDS_WITH` | |
    * | `string[]`    | `IN`, `NOT IN` | |
    * | `string[]` _size 2_ | `BETWEEN`, `NOT BETWEEN` | The first item is used for min (start of the range), and the second item is used for max (end of the range).
    * | `null`    | `IS NULL`, `IS NOT NULL` | Must use `null`
-   * 
+   *
    * [Read more about filter in Drupal.org Documentation](https://www.drupal.org/docs/8/core/modules/jsonapi-module/filtering)
-   * 
+   *
    * @param path A 'path' identifies a field on a resource
    * @param value string[] | null` | A 'value' is the thing you compare against. For operators like "IN" which supports multiple parameters, you can supply an array.
-   * @param operator An 'operator' is a method of comparison 
+   * @param operator An 'operator' is a method of comparison
    * @param memberOf Name of the group, the filter belongs to
-   * 
-   * @category JSON:API Query 
+   *
+   * @category JSON:API Query
    */
   public addFilter(
     path: string,
@@ -276,7 +276,6 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
     return this;
   }
 
-
   /**
    * @ignore
    */
@@ -292,7 +291,7 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
 
   /**
    * Get query object.
-   * 
+   *
    * @category Helper
    */
   public getQueryObject(): ParamBag<any> {
@@ -308,7 +307,7 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
 
   /**
    * Get query string.
-   * 
+   *
    * @category Helper
    */
   public getQueryString(options?: object): string {
@@ -316,10 +315,9 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
     return qs.stringify(data, options);
   }
 
-
   /**
    * Clear all parameters added so far.
-   * 
+   *
    * @category Helper
    */
   public clear() {
@@ -335,7 +333,7 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
 
   /**
    * Initialize with a previously stored query object.
-   * 
+   *
    * @category Init
    */
   public initializeWithQueryObject(input: any) {
@@ -362,7 +360,7 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
 
   /**
    * Initialize with a previously stored query string.
-   * 
+   *
    * @category Init
    */
   public initializeWithQueryString(input: string) {
@@ -373,7 +371,7 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
 
   /**
    * Clone a given DrupalJsonApiParam object.
-   * 
+   *
    * @category Helper
    */
   public clone(input: DrupalJsonApiParamsInterface) {
@@ -384,7 +382,7 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
 
   /**
    * Initialize with a previously stored query/object/query string.
-   * 
+   *
    * @category Init
    */
   public initialize(input?: string | object | DrupalJsonApiParamsInterface): DrupalJsonApiParams {
@@ -405,5 +403,4 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
     }
     return this;
   }
-
 }
