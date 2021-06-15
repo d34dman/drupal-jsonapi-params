@@ -1,4 +1,5 @@
 import qs = require('qs');
+import Operators from './operators.ts'
 
 export interface FilterItems {
   [key: string]: FilterItem | string;
@@ -274,6 +275,17 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
     };
 
     return this;
+  }
+  
+  public addFilterQuery(query: string): DrupalJsonApiParams {
+    const operators = Object.values(Operators).join('|');
+    const re = new RegExp(`(?<path>.+)\s*(?<operator>${operators})\s*'(?<value>.+)'\s*((memberOf)\s*(?<memberOf>.+))?`);
+    const matches = query.match(re);
+    let { path, operator, value, memberOf } = matches.groups;
+    value = JSON.parse(value);
+    memberOf = memberOf ? [memberOf] : []; 
+    const params = [path, operator, value, ...memberOf];
+    return this.addFilter(...params);
   }
 
   /**
