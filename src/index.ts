@@ -1,10 +1,15 @@
 import qs = require('qs');
 
 export interface FilterItems {
-  [key: string]: FilterItem | string;
+  [key: string]: FilterItemType;
 }
 
-export interface FilterItem {
+export type FilterItemShortest = string;
+export type FilterItemShort = {
+  operator: string;
+  value: string;
+};
+export type FilterItem = {
   condition?: {
     operator?: string;
     path: string;
@@ -12,7 +17,9 @@ export interface FilterItem {
     memberOf?: string;
   };
   group?: GroupItem;
-}
+};
+
+export type FilterItemType = FilterItem | FilterItemShort | FilterItemShortest;
 
 export interface GroupItem {
   conjunction: string;
@@ -259,8 +266,15 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
       return this;
     }
     // Validate filter
-    if (operator === '=' && memberOf === undefined && this.data.filter[path] === undefined) {
-      this.data.filter[path] = value;
+    if (memberOf === undefined && path === name && this.data.filter[path] === undefined) {
+      if (operator === '=') {
+        this.data.filter[name] = value;
+      } else {
+        this.data.filter[name] = {
+          value,
+          operator,
+        };
+      }
       return this;
     }
 
