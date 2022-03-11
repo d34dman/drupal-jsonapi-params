@@ -1,6 +1,6 @@
 {
   "name": "drupal-jsonapi-params",
-  "version": "1.2.3",
+  "version": "2.0.0",
   "description": "Drupal JSON-API params",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
