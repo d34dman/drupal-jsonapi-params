@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.0.0]
 
+## Changed
+
+- BREAKING CHANGE! FilterItem interface has been replaced by FilterItemType
+
 ## Fixed
 
 - Fixed short query generation for cases where operator is other than "="
