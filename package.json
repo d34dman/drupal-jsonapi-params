@@ -37,7 +37,6 @@
   "devDependencies": {
     "@types/jest": "^27.0.3",
     "@types/qs": "^6.9.3",
-    "codecov": "^3.8.3",
     "jest": "^27.4.5",
     "prettier": "^1.19.1",
     "ts-jest": "^27.1.2",
