@@ -46,6 +46,6 @@
     "typescript": "^4.6.3"
   },
   "dependencies": {
-    "qs": "^6.10.3"
+    "qs": "^6.10.4"
   }
 }
