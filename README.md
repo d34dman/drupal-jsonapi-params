@@ -54,6 +54,8 @@ apiParams
   .addFilter('status', '2', '!=', 'publish_status')
   // Add Page Limit.
   .addPageLimit(5)
+  // Add Page Offset.
+  .addPageOffset(20)
   // Add Fields.
   .addFields('node--article', ['field_a.id', 'field_b.uid', 'field_c.tid'])
   // Add Includes.
@@ -147,6 +149,17 @@ Use to restrict max amount of items returned in the listing. Using this for pagi
 |Params | Type | Description |
 | ---   | ---  | ---         |
 | limit | `number` | Number of items to limit to |
+
+[Read more about Pagination in Drupal.org Documentation](https://www.drupal.org/docs/8/core/modules/jsonapi-module/pagination)
+
+### addPageOffset
+
+Use to skip some items items from start of the listing. Please note that this is not the page number. To get the offset number for a page you can
+multiply the number of pages you want to skip with items per page.
+
+|Params | Type | Description |
+| ---   | ---  | ---         |
+| offset | `number` | Number of items to skip to |
 
 [Read more about Pagination in Drupal.org Documentation](https://www.drupal.org/docs/8/core/modules/jsonapi-module/pagination)
 
