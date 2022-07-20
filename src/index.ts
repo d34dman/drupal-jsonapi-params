@@ -27,7 +27,8 @@ export interface GroupItem {
 }
 
 export interface PageItem {
-  limit: number;
+  limit?: number;
+  offset?: number;
 }
 
 export interface FieldItems {
@@ -147,7 +148,35 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
    * @category JSON:API Query
    */
   public addPageLimit(limit: number): DrupalJsonApiParams {
-    this.data.page = { limit };
+    if (this.data.page === undefined) {
+      this.data.page = { limit }
+    }
+    else {
+      this.data.page.limit = limit;
+    }
+    return this;
+  }
+
+  /**
+   * Add JSON:API page offset.
+   *
+   * Use to skip some items from the start of the listing.
+   * Using this for pagination is tricky, and make sure you read
+   * the following document on Drupal.org to implement it correctly.
+   *
+   * [Read more about Pagination in Drupal.org Documentation](https://www.drupal.org/docs/8/core/modules/jsonapi-module/pagination)
+   *
+   * @param offset Number of items to skip from the begining.
+   *
+   * @category JSON:API Query
+   */
+   public addPageOffset(offset: number): DrupalJsonApiParams {
+    if (this.data.page === undefined) {
+      this.data.page = { offset }
+    }
+    else {
+      this.data.page.offset = offset;
+    }
     return this;
   }
 

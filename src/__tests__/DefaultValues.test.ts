@@ -151,6 +151,33 @@ test('Add Pager with limit 5', () => {
   expect(api.getQueryString({ encode: false })).toBe('page[limit]=5');
 });
 
+test('Add Pager with offset 3', () => {
+  let api = new DrupalJsonApiParams();
+  api.addPageOffset(3);
+  expect(api.getQueryString({ encode: false })).toBe('page[offset]=3');
+});
+
+
+test('Point pager to 3rd page with 5 items per page', () => {
+  let api = new DrupalJsonApiParams();
+  // Page limit is 5, because we take 5 items per page.
+  api.addPageLimit(5)
+  // Offset is 10, which is a way of saying skip all items from
+  // first two pages. Since there are two pages with 5 items each
+  // we skip 5*2 items, i.e. 10 items.
+  api.addPageOffset(10);
+  expect(api.getQueryString({ encode: false })).toBe('page[limit]=5&page[offset]=10');
+});
+
+test('Point pager to 3rd page with 5 items per page - alternate approach', () => {
+  // This test is to check that irrespective of the order in which
+  // the offset/limit are entered, the query is generated properly.
+  let api = new DrupalJsonApiParams();
+  api.addPageOffset(10);
+  api.addPageLimit(5)
+  expect(api.getQueryString({ encode: false })).toBe('page[offset]=10&page[limit]=5');
+});
+
 test('Add sort by status', () => {
   let api = new DrupalJsonApiParams();
   api.addSort('status');
@@ -185,6 +212,7 @@ test("Nova's Ark", () => {
     .addFilter('status', '2', '!=', 'publish_status')
     // Add Page Limit.
     .addPageLimit(5)
+    .addPageOffset(3)
     // Add Fields.
     .addFields('node--article', ['field_a.id', 'field_b.uid', 'field_c.tid'])
     // Add Includes.
@@ -194,6 +222,6 @@ test("Nova's Ark", () => {
     .addSort('uid')
     .addSort('status');
   expect(api.getQueryString({ encode: false })).toBe(
-    'filter[4][condition][path]=status&filter[4][condition][value]=2&filter[4][condition][operator]=!=&filter[4][condition][memberOf]=publish_status&filter[publish_status][group][conjunction]=OR&filter[publish_status][group][memberOf]=parent_group&filter[child_group_B][group][conjunction]=AND&filter[child_group_B][group][memberOf]=parent_group&filter[parent_group][group][conjunction]=AND&filter[status]=1&include=field_a.id,field_b.uid,field_c.tid&page[limit]=5&sort=-id,uid,status&fields[node--article]=field_a.id,field_b.uid,field_c.tid',
+    'filter[4][condition][path]=status&filter[4][condition][value]=2&filter[4][condition][operator]=!=&filter[4][condition][memberOf]=publish_status&filter[publish_status][group][conjunction]=OR&filter[publish_status][group][memberOf]=parent_group&filter[child_group_B][group][conjunction]=AND&filter[child_group_B][group][memberOf]=parent_group&filter[parent_group][group][conjunction]=AND&filter[status]=1&include=field_a.id,field_b.uid,field_c.tid&page[limit]=5&page[offset]=3&sort=-id,uid,status&fields[node--article]=field_a.id,field_b.uid,field_c.tid',
   );
 });
