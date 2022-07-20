@@ -149,9 +149,8 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
    */
   public addPageLimit(limit: number): DrupalJsonApiParams {
     if (this.data.page === undefined) {
-      this.data.page = { limit }
-    }
-    else {
+      this.data.page = { limit };
+    } else {
       this.data.page.limit = limit;
     }
     return this;
@@ -170,11 +169,10 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
    *
    * @category JSON:API Query
    */
-   public addPageOffset(offset: number): DrupalJsonApiParams {
+  public addPageOffset(offset: number): DrupalJsonApiParams {
     if (this.data.page === undefined) {
-      this.data.page = { offset }
-    }
-    else {
+      this.data.page = { offset };
+    } else {
       this.data.page.offset = offset;
     }
     return this;

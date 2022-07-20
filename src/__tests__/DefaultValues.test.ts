@@ -157,11 +157,10 @@ test('Add Pager with offset 3', () => {
   expect(api.getQueryString({ encode: false })).toBe('page[offset]=3');
 });
 
-
 test('Point pager to 3rd page with 5 items per page', () => {
   let api = new DrupalJsonApiParams();
   // Page limit is 5, because we take 5 items per page.
-  api.addPageLimit(5)
+  api.addPageLimit(5);
   // Offset is 10, which is a way of saying skip all items from
   // first two pages. Since there are two pages with 5 items each
   // we skip 5*2 items, i.e. 10 items.
@@ -174,7 +173,7 @@ test('Point pager to 3rd page with 5 items per page - alternate approach', () =>
   // the offset/limit are entered, the query is generated properly.
   let api = new DrupalJsonApiParams();
   api.addPageOffset(10);
-  api.addPageLimit(5)
+  api.addPageLimit(5);
   expect(api.getQueryString({ encode: false })).toBe('page[offset]=10&page[limit]=5');
 });
 
