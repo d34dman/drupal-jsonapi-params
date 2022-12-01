@@ -1,9 +1,5 @@
 import qs = require('qs');
 
-export interface FilterItems {
-  [key: string]: FilterItemType;
-}
-
 export type FilterItemShortest = string;
 export type FilterItemShort = {
   operator: string;
@@ -20,6 +16,10 @@ export type FilterItem = {
 };
 
 export type FilterItemType = FilterItem | FilterItemShort | FilterItemShortest;
+
+export interface FilterItems {
+  [key: string]: FilterItemType;
+}
 
 export interface GroupItem {
   conjunction: string;
@@ -252,12 +252,27 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
     memberOf?: string,
   ): DrupalJsonApiParams {
     const name = this.getIndexId(this.data.filter, path);
-
+    const isNullishOperator: boolean = !!(operator === 'IS NULL' || operator === 'IS NOT NULL');
     // Allow null values only for IS NULL and IS NOT NULL operators.
     if (value === null) {
-      if (!(operator === 'IS NULL' || operator === 'IS NOT NULL')) {
+      // Force conditions without any value for IS NULL and IS NOT NULL operators.
+      if (isNullishOperator) {
+        this.data.filter[name] = {
+          condition: {
+            path,
+            ...{ operator },
+            ...(memberOf !== undefined && { memberOf }),
+          },
+        };
+      }else{
         throw new TypeError(`Value cannot be null for the operator "${operator}"`);
       }
+
+      return this;
+    }
+
+    // Force conditions without any value for IS NULL and IS NOT NULL operators.
+    if (isNullishOperator) {
       this.data.filter[name] = {
         condition: {
           path,
@@ -292,6 +307,7 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
       };
       return this;
     }
+    
     // Validate filter
     if (memberOf === undefined && path === name && this.data.filter[path] === undefined) {
       if (operator === '=') {

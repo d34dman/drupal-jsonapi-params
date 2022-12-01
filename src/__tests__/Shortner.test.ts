@@ -99,3 +99,18 @@ test('10. Filtering on Date (Date only, no time)', () => {
   api.addFilter('created', '448365617');
   expect(api.getQueryString({ encode: false })).toBe('filter[created]=448365617');
 });
+
+test('11. Dont shorten IS NULL or IS NOT NULL', () => {
+  // see https://www.drupal.org/docs/core-modules-and-themes/core-modules/jsonapi-module/filtering
+  let api = new DrupalJsonApiParams();
+
+  api.addFilter('field_test_date', null, 'IS NULL');
+  expect(api.getQueryString({ encode: false })).toBe('filter[field_test_date][condition][path]=field_test_date&filter[field_test_date][condition][operator]=IS NULL');
+
+  api.clear();
+
+  api.addFilter('field_test_date', null, 'IS NOT NULL');
+  expect(api.getQueryString({ encode: false })).toBe('filter[field_test_date][condition][path]=field_test_date&filter[field_test_date][condition][operator]=IS NOT NULL');
+
+  api.clear();
+});
