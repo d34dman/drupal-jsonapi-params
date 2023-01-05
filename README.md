@@ -1,7 +1,7 @@
 # Drupal JSON-API Params
 
-[![Build Status](https://travis-ci.org/d34dman/drupal-jsonapi-params.svg?branch=master)](https://travis-ci.org/d34dman/drupal-jsonapi-params)
-[![codecov](https://codecov.io/gh/d34dman/drupal-jsonapi-params/branch/master/graph/badge.svg)](https://codecov.io/gh/d34dman/drupal-jsonapi-params)
+[![Build Status](https://travis-ci.org/d34dman/drupal-jsonapi-params.svg?branch=main)](https://travis-ci.org/d34dman/drupal-jsonapi-params)
+[![codecov](https://codecov.io/gh/d34dman/drupal-jsonapi-params/branch/main/graph/badge.svg)](https://codecov.io/gh/d34dman/drupal-jsonapi-params)
 [![npm](https://img.shields.io/npm/v/drupal-jsonapi-params)](https://www.npmjs.com/package/drupal-jsonapi-params)
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/drupal-jsonapi-params)
 ![npm type definitions](https://img.shields.io/npm/types/drupal-jsonapi-params)
@@ -14,7 +14,7 @@ The JSON:API specifications defines standard query parameters to be used to do f
 
 This module provides a helper Class to create the required query. While doing so, it also tries to optimise the query by using the short form, whenever possible.
 
-  [![API Reference](https://img.shields.io/github/workflow/status/d34dman/drupal-jsonapi-params/GitHub%20pages/master?label=API%20Reference&logo=github&style=for-the-badge)](https://d34dman.github.io/drupal-jsonapi-params/)
+  [![API Reference](https://img.shields.io/github/workflow/status/d34dman/drupal-jsonapi-params/GitHub%20pages/main?label=API%20Reference&logo=github&style=for-the-badge)](https://d34dman.github.io/drupal-jsonapi-params/)
 ## Installation
 
 Install the package via `npm`:
