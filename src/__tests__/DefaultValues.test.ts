@@ -39,6 +39,21 @@ test('Filter for `status IS NULL`', () => {
     'filter[status][condition][path]=status&filter[status][condition][operator]=IS NULL',
   );
 });
+
+test('Filter for `status IS NULL` for non-null values', () => {
+  let api = new DrupalJsonApiParams();
+  api.addFilter('status', ['random'], 'IS NULL');
+  expect(api.getQueryString({ encode: false })).toBe(
+    'filter[status][condition][path]=status&filter[status][condition][operator]=IS NULL',
+  );
+
+  let api2 = new DrupalJsonApiParams();
+  api2.addFilter('status', '', 'IS NULL');
+  expect(api2.getQueryString({ encode: false })).toBe(
+    'filter[status][condition][path]=status&filter[status][condition][operator]=IS NULL',
+  );
+});
+
 test('Filter for `status IS NULL` in valid', () => {
   let api = new DrupalJsonApiParams();
   api.addFilter('status', null, 'IS NULL', 'valid');

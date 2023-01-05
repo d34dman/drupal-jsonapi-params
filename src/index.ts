@@ -254,7 +254,12 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
     memberOf?: string,
   ): DrupalJsonApiParams {
     const name = this.getIndexId(this.data.filter, path);
-
+    // Instead of relying on users supplying 'null' value, we
+    // hardcode value to 'null'. This should improve DX and be
+    // in line with how Condition query works in Drupal's PHP api.
+    if (operator === 'IS NULL' || operator === 'IS NOT NULL') {
+      value = null;
+    }
     // Allow null values only for IS NULL and IS NOT NULL operators.
     if (value === null) {
       if (!(operator === 'IS NULL' || operator === 'IS NOT NULL')) {
