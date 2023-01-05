@@ -214,4 +214,18 @@ Re-initialize with previously stored data from `getQueryObject`
 
 ### initializeWithQueryString
 
-Re-initialize with previously stored data from `getQueryString`
+Re-initialize with previously stored data from `getQueryString`.
+This method accepts an optional parameter to pass options to `qs` library when parsing the given query.
+
+Please refer to https://www.npmjs.com/package/qs for more info about available options.
+
+This would override any options set using setQsOptions during the given call.
+
+### setQsOption
+
+Set options that is passed to `qs` library when parsing/serializing query paramters.
+Please refer to https://www.npmjs.com/package/qs for more info about available options.
+
+### getQsOption
+
+Get options that is passed to qs library when parsing/serializing query paramters. The value should match whatever was previously set via `setQsOptions` method.

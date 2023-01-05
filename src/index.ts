@@ -63,6 +63,8 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
     fields: {},
   };
 
+  private qsOptions:object = {};
+
   /**
    * Optionaly initialize with a previously stored query/object/query string.
    *
@@ -355,7 +357,9 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
    */
   public getQueryString(options?: object): string {
     const data = this.getQueryObject();
-    return qs.stringify(data, options);
+    // NOTE: Empty objects are falsy in JavaScript.
+    const qsOptions = options || this.getQsOption();
+    return qs.stringify(data, qsOptions);
   }
 
   /**
@@ -411,7 +415,9 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
    */
   public initializeWithQueryString(input: string, options?: object) {
     this.clear();
-    this.initializeWithQueryObject(qs.parse(input, options));
+    // NOTE: Empty objects are falsy in JavaScript.
+    const qsOptions = options || this.getQsOption();
+    this.initializeWithQueryObject(qs.parse(input, qsOptions));
     return this;
   }
 
@@ -424,6 +430,25 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
     const data = JSON.parse(JSON.stringify(input.getQueryObject()));
     this.initializeWithQueryObject(data);
     return this;
+  }
+
+  /**
+   * Set options that is passed to qs when parsing/serializing.
+   * 
+   * @see https://www.npmjs.com/package/qs
+   */
+  public setQsOption(options: object): DrupalJsonApiParams  {
+    this.qsOptions = options;
+    return this;
+  }
+
+  /**
+   * Get options that is passed to qs when parsing/serializing.
+   * 
+   * @see https://www.npmjs.com/package/qs
+   */
+  public getQsOption(): object {
+    return this.qsOptions;
   }
 
   /**
