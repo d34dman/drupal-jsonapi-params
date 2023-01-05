@@ -63,7 +63,7 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
     fields: {},
   };
 
-  private qsOptions:object = {};
+  private qsOptions: object = {};
 
   /**
    * Optionaly initialize with a previously stored query/object/query string.
@@ -412,7 +412,7 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
 
   /**
    * Initialize with a previously stored query string.
-   * 
+   *
    * @param input The Query string to use for initializing.
    * @param options Options to be passed to `qs` library during parsing.
    *
@@ -439,17 +439,17 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
 
   /**
    * Set options that is passed to qs when parsing/serializing.
-   * 
+   *
    * @see https://www.npmjs.com/package/qs
    */
-  public setQsOption(options: object): DrupalJsonApiParams  {
+  public setQsOption(options: object): DrupalJsonApiParams {
     this.qsOptions = options;
     return this;
   }
 
   /**
    * Get options that is passed to qs when parsing/serializing.
-   * 
+   *
    * @see https://www.npmjs.com/package/qs
    */
   public getQsOption(): object {
