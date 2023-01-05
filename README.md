@@ -1,6 +1,6 @@
 # Drupal JSON-API Params
 
-[![Build Status](https://travis-ci.org/d34dman/drupal-jsonapi-params.svg?branch=main)](https://travis-ci.org/d34dman/drupal-jsonapi-params)
+![GitHub pages build status](https://github.com/d34dman/drupal-jsonapi-params/actions/workflows/typedoc.yml/badge.svg)
 [![codecov](https://codecov.io/gh/d34dman/drupal-jsonapi-params/branch/main/graph/badge.svg)](https://codecov.io/gh/d34dman/drupal-jsonapi-params)
 [![npm](https://img.shields.io/npm/v/drupal-jsonapi-params)](https://www.npmjs.com/package/drupal-jsonapi-params)
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/drupal-jsonapi-params)

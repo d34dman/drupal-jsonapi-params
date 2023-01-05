@@ -1,0 +1,21 @@
+name: Codecov
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Test drupal-jsonapi-params
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+    - name: Install requirements
+      run: npm install
+    - name: Run tests and collect coverage
+      run: npm run test
+    - name: Upload coverage reports to Codecov with GitHub Action
+      uses: codecov/codecov-action@v2
