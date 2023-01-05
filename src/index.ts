@@ -349,6 +349,8 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
   /**
    * Get query string.
    *
+   * @param options Options to be passed to `qs` library during parsing.
+   *
    * @category Helper
    */
   public getQueryString(options?: object): string {
@@ -401,12 +403,15 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
 
   /**
    * Initialize with a previously stored query string.
+   * 
+   * @param input The Query string to use for initializing.
+   * @param options Options to be passed to `qs` library during parsing.
    *
    * @category Init
    */
-  public initializeWithQueryString(input: string) {
+  public initializeWithQueryString(input: string, options?: object) {
     this.clear();
-    this.initializeWithQueryObject(qs.parse(input));
+    this.initializeWithQueryObject(qs.parse(input, options));
     return this;
   }
 
