@@ -1,12 +1,17 @@
 # Changelog
-All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+## 2.2.0
+
+### Minor Changes
+
+- c81d8ff: Introduced `setQsOption` and `getQsOption` to set and get default options passed to `qs` library.
+
+### Patch Changes
+
+- 8806a73: Switched primary development branch to use `main` instead of `master`
+- 6f42bd0: Fixed a bug when non null values were supplied to `IS NULL` and `IS NOT NULL` operator, which used to generate buggy query.
 
 ## [2.1.0]
-
-## New
 
 - `addPageOffset` method added.
 
@@ -19,12 +24,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Fixed
 
 - Fixed short query generation for cases where operator is other than "="
+
 ## [1.2.3]
+
 ### Changed
+
 - Switched to version 2 for package-lock.json
-- Updated testing tools (jest) from 25.* to 27.*
+- Updated testing tools (jest) from 25._ to 27._
+
 ## [1.2.2] - 2021-06-14
+
 ### Added
+
 - Added CHANGELOG.md
+
 ### Changed
+
 - `constructor` for `DrupalJsonApiParams` accepts same parameter as `initialize` method, and also calls it.
