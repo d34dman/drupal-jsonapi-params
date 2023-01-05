@@ -2,7 +2,7 @@
 
 ![GitHub pages build status](https://img.shields.io/github/actions/workflow/status/d34dman/drupal-jsonapi-params/typedoc.yml?style=flat-square&label=Build)
 [![codecov](https://img.shields.io/codecov/c/github/d34dman/drupal-jsonapi-params/main?style=flat-square)
-[![npm](https://img.shields.io/npm/v/drupal-jsonapi-params)](https://www.npmjs.com/package/drupal-jsonapi-params)
+[![npm](https://img.shields.io/npm/v/drupal-jsonapi-params?style=flat-square)](https://www.npmjs.com/package/drupal-jsonapi-params)
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/drupal-jsonapi-params?style=flat-square)
 ![npm type definitions](https://img.shields.io/npm/types/drupal-jsonapi-params?style=flat-square)
 [![npm downloads](https://img.shields.io/npm/dt/drupal-jsonapi-params.svg?maxAge=2592000&style=flat-square)](http://npmjs.com/package/drupal-jsonapi-params)
