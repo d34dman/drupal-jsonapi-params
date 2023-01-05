@@ -1,12 +1,12 @@
 # Drupal JSON-API Params
 
-![GitHub pages build status](https://github.com/d34dman/drupal-jsonapi-params/actions/workflows/typedoc.yml/badge.svg)
-[![codecov](https://codecov.io/gh/d34dman/drupal-jsonapi-params/branch/main/graph/badge.svg)](https://codecov.io/gh/d34dman/drupal-jsonapi-params)
+![GitHub pages build status](https://img.shields.io/github/actions/workflow/status/d34dman/drupal-jsonapi-params/typedoc.yml?style=flat-square&label=Build)
+[![codecov](https://img.shields.io/codecov/c/github/d34dman/drupal-jsonapi-params/main?style=flat-square)
 [![npm](https://img.shields.io/npm/v/drupal-jsonapi-params)](https://www.npmjs.com/package/drupal-jsonapi-params)
-![npm bundle size](https://img.shields.io/bundlephobia/minzip/drupal-jsonapi-params)
-![npm type definitions](https://img.shields.io/npm/types/drupal-jsonapi-params)
-[![npm downloads](https://img.shields.io/npm/dt/drupal-jsonapi-params.svg?maxAge=2592000)](http://npmjs.com/package/drupal-jsonapi-params)
-[![Known Vulnerabilities](https://snyk.io/test/npm/drupal-jsonapi-params/1.1.12/badge.svg)](https://snyk.io/test/npm/drupal-jsonapi-params/1.1.12)
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/drupal-jsonapi-params?style=flat-square)
+![npm type definitions](https://img.shields.io/npm/types/drupal-jsonapi-params?style=flat-square)
+[![npm downloads](https://img.shields.io/npm/dt/drupal-jsonapi-params.svg?maxAge=2592000&style=flat-square)](http://npmjs.com/package/drupal-jsonapi-params)
+[![Known Vulnerabilities](https://img.shields.io/snyk/vulnerabilities/github/d34dman/drupal-jsonapi-params?style=flat-square)](https://snyk.io/test/npm/drupal-jsonapi-params)
 
 The [JSON:API](https://jsonapi.org/) is part of [Drupal](https://www.drupal.org/) Core.
 
@@ -14,7 +14,7 @@ The JSON:API specifications defines standard query parameters to be used to do f
 
 This module provides a helper Class to create the required query. While doing so, it also tries to optimise the query by using the short form, whenever possible.
 
-  [![API Reference](https://img.shields.io/github/workflow/status/d34dman/drupal-jsonapi-params/GitHub%20pages/main?label=API%20Reference&logo=github&style=for-the-badge)](https://d34dman.github.io/drupal-jsonapi-params/)
+  [![API Reference](https://img.shields.io/github/actions/workflow/status/d34dman/drupal-jsonapi-params/typedoc.yml?label=API%20Reference&logo=GitHub&style=for-the-badge)](https://d34dman.github.io/drupal-jsonapi-params/)
 ## Installation
 
 Install the package via `npm`:
