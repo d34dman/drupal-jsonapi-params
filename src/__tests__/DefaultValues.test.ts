@@ -1,4 +1,5 @@
 import { DrupalJsonApiParams } from '../index';
+
 test('Empty Default Values', () => {
   let api = new DrupalJsonApiParams();
   expect(api.getQueryString()).toBe('');
@@ -8,6 +9,44 @@ test('Filter for `status = 1`', () => {
   let api = new DrupalJsonApiParams();
   api.addFilter('status', '1');
   expect(api.getQueryString({ encode: false })).toBe('filter[status]=1');
+});
+
+test('Filter for `status = 1` twice', () => {
+  let api = new DrupalJsonApiParams();
+  api.addFilter('status', '1');
+  api.addFilter('status', '1');
+  expect(api.getQueryString({ encode: false })).toBe(
+    'filter[1][condition][path]=status&filter[1][condition][value]=1&filter[status]=1',
+  );
+});
+
+test('Filter for `status = 1` without using shortcuts', () => {
+  let api = new DrupalJsonApiParams(
+    {},
+    {
+      useShortCutForQueryGeneration: false,
+    },
+  );
+  api.addFilter('status', '1');
+  api.addFilter('status', '1');
+  expect(api.getQueryString({ encode: false })).toBe(
+    'filter[1][condition][path]=status&filter[1][condition][value]=1&filter[1][condition][operator]==&filter[status][condition][path]=status&filter[status][condition][value]=1&filter[status][condition][operator]==',
+  );
+});
+
+test('Filter for `status = 1` with field names for keys and no shortcuts', () => {
+  let api = new DrupalJsonApiParams(
+    'filter[status][condition][path]=status&filter[status][condition][value]=1&filter[status][condition][operator]==&filter[status--2][condition][path]=status&filter[status--2][condition][value]=1&filter[status--2][condition][operator]==',
+    {
+      useShortCutForQueryGeneration: false,
+      alwaysUseFieldNameForKeys: true,
+    },
+  );
+  api.addFilter('status', '1');
+  api.addFilter('status', '1');
+  expect(api.getQueryString({ encode: false })).toBe(
+    'filter[status][condition][path]=status&filter[status][condition][value]=1&filter[status][condition][operator]==&filter[status--2][condition][path]=status&filter[status--2][condition][value]=1&filter[status--2][condition][operator]==&filter[status--1][condition][path]=status&filter[status--1][condition][value]=1&filter[status--1][condition][operator]==&filter[status--3][condition][path]=status&filter[status--3][condition][value]=1&filter[status--3][condition][operator]==',
+  );
 });
 
 test('Filter for `status = 1` && `status = 2`', () => {

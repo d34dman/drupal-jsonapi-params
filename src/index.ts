@@ -19,6 +19,11 @@ export type FilterItem = {
   group?: GroupItem;
 };
 
+export type DrupalJsonApiParamConfig = {
+  useShortCutForQueryGeneration?: boolean;
+  alwaysUseFieldNameForKeys?: boolean;
+};
+
 export type FilterItemType = FilterItem | FilterItemShort | FilterItemShortest;
 
 export interface GroupItem {
@@ -65,12 +70,20 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
 
   private qsOptions: object = {};
 
+  private config: DrupalJsonApiParamConfig = {
+    useShortCutForQueryGeneration: true,
+    alwaysUseFieldNameForKeys: false,
+  };
+
   /**
    * Optionaly initialize with a previously stored query/object/query string.
    *
    * @category Init
    */
-  public constructor(input?: string | object | DrupalJsonApiParamsInterface) {
+  public constructor(input?: string | object | DrupalJsonApiParamsInterface, config?: DrupalJsonApiParamConfig) {
+    if (config !== undefined) {
+      this.config = config;
+    }
     this.initialize(input);
   }
 
@@ -252,8 +265,9 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
     value: string | string[] | null,
     operator: string = '=',
     memberOf?: string,
+    key?: string,
   ): DrupalJsonApiParams {
-    const name = this.getIndexId(this.data.filter, path);
+    const name = this.getIndexId(this.data.filter, key || path, !!key);
     // Instead of relying on users supplying 'null' value, we
     // hardcode value to 'null'. This should improve DX and be
     // in line with how Condition query works in Drupal's PHP api.
@@ -300,7 +314,12 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
       return this;
     }
     // Validate filter
-    if (memberOf === undefined && path === name && this.data.filter[path] === undefined) {
+    if (
+      this.config.useShortCutForQueryGeneration &&
+      memberOf === undefined &&
+      path === name &&
+      this.data.filter[path] === undefined
+    ) {
       if (operator === '=') {
         this.data.filter[name] = value;
       } else {
@@ -316,7 +335,8 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
       condition: {
         path,
         value,
-        ...(operator !== '=' && { operator }),
+        // ...((this.config.useShortCutForQueryGeneration && (operator !== '=')) && { operator }),
+        ...(this.config.useShortCutForQueryGeneration ? operator !== '=' && { operator } : { operator }),
         ...(memberOf !== undefined && { memberOf }),
       },
     };
@@ -327,14 +347,28 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
   /**
    * @ignore
    */
-  private getIndexId(obj: any, proposedKey: string): string {
+  private getIndexId(obj: any, proposedKey: string, enforceKeyName?: boolean): string {
+    enforceKeyName = enforceKeyName || this.config.alwaysUseFieldNameForKeys;
     let key: string;
     if (obj[proposedKey] === undefined) {
       key = proposedKey;
     } else {
-      key = Object.keys(obj).length.toString();
+      key = this.generateKeyName(obj, proposedKey, enforceKeyName);
     }
     return key;
+  }
+
+  private generateKeyName(obj: any, proposedKey: string, enforceKeyName: boolean = false): string {
+    const length = Object.keys(obj).length;
+    if (enforceKeyName) {
+      for (let ndx = 1; ndx <= length; ndx++) {
+        let key = `${proposedKey}--${ndx}`;
+        if (obj[key] === undefined) {
+          return key;
+        }
+      }
+    }
+    return length.toString();
   }
 
   /**
