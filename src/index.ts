@@ -56,7 +56,7 @@ export interface ParamBag<TValue> {
 }
 
 export interface DrupalJsonApiParamsInterface {
-  initialize(input: string | object | DrupalJsonApiParamsInterface): DrupalJsonApiParams;
+  initialize(input: string | object | DrupalJsonApiParamsInterface): this;
   getQueryObject(): object;
 }
 export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
@@ -123,7 +123,7 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
    *
    * @category JSON:API Query
    */
-  public addFields(type: string, fields: string[]): DrupalJsonApiParams {
+  public addFields(type: string, fields: string[]): this {
     this.data.fields[type] = fields.join(',');
     return this;
   }
@@ -140,7 +140,7 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
    *
    * @category JSON:API Query
    */
-  public addSort(path: string, direction?: string): DrupalJsonApiParams {
+  public addSort(path: string, direction?: string): this {
     let prefix = '';
     if (direction !== undefined && direction === 'DESC') {
       prefix = '-';
@@ -162,7 +162,7 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
    *
    * @category JSON:API Query
    */
-  public addPageLimit(limit: number): DrupalJsonApiParams {
+  public addPageLimit(limit: number): this {
     if (this.data.page === undefined) {
       this.data.page = { limit };
     } else {
@@ -184,7 +184,7 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
    *
    * @category JSON:API Query
    */
-  public addPageOffset(offset: number): DrupalJsonApiParams {
+  public addPageOffset(offset: number): this {
     if (this.data.page === undefined) {
       this.data.page = { offset };
     } else {
@@ -205,7 +205,7 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
    *
    * @category JSON:API Query
    */
-  public addInclude(fields: string[]): DrupalJsonApiParams {
+  public addInclude(fields: string[]): this {
     this.data.include = this.data.include.concat(fields);
     return this;
   }
@@ -219,7 +219,7 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
    *
    * @category JSON:API Query
    */
-  public addGroup(name: string, conjunction: string = 'OR', memberOf?: string): DrupalJsonApiParams {
+  public addGroup(name: string, conjunction: string = 'OR', memberOf?: string): this {
     this.data.filter[name] = {
       group: {
         conjunction,
@@ -266,7 +266,7 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
     operator: string = '=',
     memberOf?: string,
     key?: string,
-  ): DrupalJsonApiParams {
+  ): this {
     const name = this.getIndexId(this.data.filter, key || path, !!key);
     // Instead of relying on users supplying 'null' value, we
     // hardcode value to 'null'. This should improve DX and be
@@ -476,7 +476,7 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
    *
    * @see https://www.npmjs.com/package/qs
    */
-  public setQsOption(options: object): DrupalJsonApiParams {
+  public setQsOption(options: object): this {
     this.qsOptions = options;
     return this;
   }
@@ -495,7 +495,7 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
    *
    * @category Init
    */
-  public initialize(input?: string | object | DrupalJsonApiParamsInterface): DrupalJsonApiParams {
+  public initialize(input?: string | object | DrupalJsonApiParamsInterface): this {
     if (input === undefined) {
       this.initializeWithQueryString('');
     } else if (typeof input === 'object') {
