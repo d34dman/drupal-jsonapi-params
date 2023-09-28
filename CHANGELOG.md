@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.3.0
+
+### Minor Changes
+
+- 1edf445: Introduce configurations to control query generation behaviour.
+- 1edf445: addFilter now supports an optional parameter to use a specific key
+
+### Patch Changes
+
+- Use TypeScript "this" return type for fluent setters
+
 ## 2.2.0
 
 ### Minor Changes
