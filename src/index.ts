@@ -362,7 +362,7 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
     const length = Object.keys(obj).length;
     if (enforceKeyName) {
       for (let ndx = 1; ndx <= length; ndx++) {
-        let key = `${proposedKey}--${ndx}`;
+        const key = `${proposedKey}--${ndx}`;
         if (obj[key] === undefined) {
           return key;
         }
