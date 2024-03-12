@@ -3,12 +3,11 @@
   <h1>Drupal JSON-API Params</h1>
 </a>
 <p><img src="https://img.shields.io/github/actions/workflow/status/d34dman/drupal-jsonapi-params/typedoc.yml?style=flat-square&label=Build" alt="GitHub pages build status">
-<img src="https://img.shields.io/codecov/c/github/d34dman/drupal-jsonapi-params/main?style=flat-square" alt="codecov">
+<img src="https://img.shields.io/codecov/c/github/d34dman/drupal-jsonapi-params?style=flat-square&logo=codecov" alt="Codecov">
 <a href="https://www.npmjs.com/package/drupal-jsonapi-params"><img src="https://img.shields.io/npm/v/drupal-jsonapi-params?style=flat-square" alt="npm"></a>
-<img src="https://img.shields.io/bundlephobia/minzip/drupal-jsonapi-params?style=flat-square" alt="npm bundle size">
+<img src="https://img.shields.io/bundlejs/size/drupal-jsonapi-params?style=flat-square" alt="npm package minimized gzipped size">
 <img src="https://img.shields.io/npm/types/drupal-jsonapi-params?style=flat-square" alt="npm type definitions">
-<a href="http://npmjs.com/package/drupal-jsonapi-params"><img src="https://img.shields.io/npm/dt/drupal-jsonapi-params.svg?maxAge=2592000&style=flat-square" alt="npm downloads"></a>
-<a href="https://snyk.io/test/npm/drupal-jsonapi-params"><img src="https://img.shields.io/snyk/vulnerabilities/github/d34dman/drupal-jsonapi-params?style=flat-square" alt="Known Vulnerabilities"></a></p>
+<a href="http://npmjs.com/package/drupal-jsonapi-params"><img src="https://img.shields.io/npm/dt/drupal-jsonapi-params.svg?maxAge=2592000&style=flat-square" alt="npm downloads"></a></p>
 <p>The <a href="https://jsonapi.org/">JSON:API</a> is part of <a href="https://www.drupal.org/">Drupal</a> Core.</p>
 <p>The JSON:API specifications defines standard query parameters to be used to do filtering, sorting, restricting fields that are returned, pagination and so on.</p>
 <p>This module provides a helper Class to create the required query. While doing so, it also tries to optimise the query by using the short form, whenever possible.</p>
@@ -231,6 +230,10 @@ multiply the number of pages you want to skip with items per page.</p>
 </tr>
 </tbody></table>
 <p><a href="https://www.drupal.org/docs/8/core/modules/jsonapi-module/pagination">Read more about Pagination in Drupal.org Documentation</a></p>
+<p><strong>NOTE</strong></p>
+<p>JSON:API response have pagination information build into the response. Based on the results in the response, you can get &quot;previous&quot; and &quot;next&quot; links which can be used
+to get further items when results overflows into multiple pages.</p>
+<p>If you are looking for a practical guide, you can check out the example in this issue on GitHub <a href="https://github.com/d34dman/drupal-jsonapi-params/issues/40">https://github.com/d34dman/drupal-jsonapi-params/issues/40</a></p>
 
 <a href="#addfields" id="addfields" style="color: inherit; text-decoration: none;">
   <h3>addFields</h3>
