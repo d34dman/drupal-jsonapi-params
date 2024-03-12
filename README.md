@@ -151,6 +151,7 @@ Use to restrict max amount of items returned in the listing. Using this for pagi
 
 [Read more about Pagination in Drupal.org Documentation](https://www.drupal.org/docs/8/core/modules/jsonapi-module/pagination)
 
+
 ### addPageOffset
 
 Use to skip some items items from start of the listing. Please note that this is not the page number. To get the offset number for a page you can
@@ -161,6 +162,14 @@ multiply the number of pages you want to skip with items per page.
 | offset | `number` | Number of items to skip to |
 
 [Read more about Pagination in Drupal.org Documentation](https://www.drupal.org/docs/8/core/modules/jsonapi-module/pagination)
+
+**NOTE**
+
+JSON:API response have pagination information build into the response. Based on the results in the response, you can get "previous" and "next" links which can be used
+to get further items when results overflows into multiple pages.
+
+If you are looking for a practical guide, you can check out the example in this issue on GitHub https://github.com/d34dman/drupal-jsonapi-params/issues/40
+
 
 ### addFields
 
