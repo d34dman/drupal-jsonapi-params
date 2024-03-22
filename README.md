@@ -173,7 +173,7 @@ If you are looking for a practical guide, you can check out the example in this 
 
 ### addFields
 
-The name of this method might be miss leading. Use this to explicitely request for specific fields on an entity.
+The name of this method might be misleading. Use this to explicitely request for specific fields on an entity.
 
 |Params | Type | Description |
 | ---   | ---  | ---         |
