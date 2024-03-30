@@ -5,3 +5,4 @@ node_modules
 *.gcno
 *.gcda
 *.gcov
+.DS_Store
