@@ -7,6 +7,9 @@ test('Custom parameters', () => {
   api.addCustomParam({ foo: { bar: 'baz' } });
   api.addCustomParam({ bar: ['a', 'b', 'c'] });
   expect(api.getQueryString({ encode: false })).toBe('foo[bar]=baz&bar[0]=a&bar[1]=b&bar[2]=c');
+  api.clear();
+  expect(api.getQueryString()).toBe('');
+  expect(api.addCustomParam({ foo: 'bar' })).toBeInstanceOf(DrupalJsonApiParams)
 });
 
 test("Nova's Ark with custom params", () => {
