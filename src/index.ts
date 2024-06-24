@@ -111,6 +111,7 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
       ...this.data,
       ...input,
     };
+    return this;
   }
 
   /**
