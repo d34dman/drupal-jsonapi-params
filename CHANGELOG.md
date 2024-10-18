@@ -1,26 +1,39 @@
 # Changelog
 
+## 2.3.2
+
+### Patch Changes
+
+- Fixed return for custom params method [#44](https://github.com/d34dman/drupal-jsonapi-params/pull/44).
+
+
+## 2.3.1
+
+### Patch Changes
+
+- Dev dependency update.
+  
 ## 2.3.0
 
 ### Minor Changes
 
-- 1edf445: Introduce configurations to control query generation behaviour.
-- 1edf445: addFilter now supports an optional parameter to use a specific key
+- Introduce configurations to control query generation behaviour.
+- `addFilter` now supports an optional parameter to use a specific key
 
 ### Patch Changes
 
-- Use TypeScript "this" return type for fluent setters
+- Use TypeScript `this` return type for fluent setters
 
 ## 2.2.0
 
 ### Minor Changes
 
-- c81d8ff: Introduced `setQsOption` and `getQsOption` to set and get default options passed to `qs` library.
+- Introduced `setQsOption` and `getQsOption` to set and get default options passed to `qs` library.
 
 ### Patch Changes
 
-- 8806a73: Switched primary development branch to use `main` instead of `master`
-- 6f42bd0: Fixed a bug when non null values were supplied to `IS NULL` and `IS NOT NULL` operator, which used to generate buggy query.
+- Switched primary development branch to use `main` instead of `master`
+- Fixed a bug when non null values were supplied to `IS NULL` and `IS NOT NULL` operator, which used to generate buggy query.
 
 ## [2.1.0]
 
