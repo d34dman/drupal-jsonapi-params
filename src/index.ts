@@ -347,9 +347,15 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
   }
 
   /**
-   * @ignore
+   * Generate a unique key name for the given object.
+   *
+   * @param obj The object to generate a key name for.
+   * @param proposedKey The proposed key name.
+   * @param enforceKeyName Whether to enforce the key name.
+   *
+   * @returns The generated key name.
    */
-  private getIndexId(obj: any, proposedKey: string, enforceKeyName?: boolean): string {
+  protected getIndexId(obj: any, proposedKey: string, enforceKeyName?: boolean): string {
     enforceKeyName = enforceKeyName || this.config.alwaysUseFieldNameForKeys;
     let key: string;
     if (obj[proposedKey] === undefined) {
