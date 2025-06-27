@@ -366,7 +366,16 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
     return key;
   }
 
-  private generateKeyName(obj: any, proposedKey: string, enforceKeyName: boolean = false): string {
+  /**
+   * Generate a unique key name for the given object.
+   *
+   * @param obj The object to generate a key name for.
+   * @param proposedKey The proposed key name.
+   * @param enforceKeyName Whether to enforce the key name.
+   *
+   * @returns The generated key name.
+   */
+  protected generateKeyName(obj: any, proposedKey: string, enforceKeyName: boolean = false): string {
     const length = Object.keys(obj).length;
     if (enforceKeyName) {
       for (let ndx = 1; ndx <= length; ndx++) {
