@@ -60,7 +60,6 @@ export interface DrupalJsonApiParamsInterface {
   getQueryObject(): object;
 }
 export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
-
   protected data: DrupalJsonApiParamsStore = {
     filter: {},
     include: [],
@@ -395,19 +394,19 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
    */
   public getQueryObject(): ParamBag<any> {
     const foo: ParamBag<any> = JSON.parse(JSON.stringify(this.data));
-  
+
     if (this.data.include.length > 0) {
-      foo.include = this.data.include.join(",");
+      foo.include = this.data.include.join(',');
     } else {
       delete foo.include;
     }
-  
+
     if (this.data.sort.length > 0) {
-      foo.sort = this.data.sort.join(",");
+      foo.sort = this.data.sort.join(',');
     } else {
       delete foo.sort;
     }
-  
+
     return foo;
   }
 
