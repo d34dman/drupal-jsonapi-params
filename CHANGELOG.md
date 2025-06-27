@@ -1,18 +1,29 @@
 # Changelog
 
+## 3.0.0
+
+### Major Changes
+
+- - **BREAKING CHANGE**: Changed internal properties and methods from `private` to `protected` to enable inheritance scenarios
+    - `data` property is now accessible to subclasses for query state management
+    - `qsOptions` property is now accessible to subclasses for query string options
+    - `config` property is now accessible to subclasses for configuration settings
+    - `generateKeyName` method is now accessible to subclasses
+    - `getIndexId` method is now accessible to subclasses
+    - This change affects consumers who subclass `DrupalJsonApiParams`
+
 ## 2.3.2
 
 ### Patch Changes
 
 - Fixed return for custom params method [#44](https://github.com/d34dman/drupal-jsonapi-params/pull/44).
 
-
 ## 2.3.1
 
 ### Patch Changes
 
 - Dev dependency update.
-  
+
 ## 2.3.0
 
 ### Minor Changes
