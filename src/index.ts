@@ -380,12 +380,19 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
    */
   public getQueryObject(): ParamBag<any> {
     const foo: ParamBag<any> = JSON.parse(JSON.stringify(this.data));
-    if (!!this.data.include.length) {
-      foo.include = this.data.include.join(',');
+  
+    if (this.data.include.length > 0) {
+      foo.include = this.data.include.join(",");
+    } else {
+      delete foo.include;
     }
-    if (!!this.data.sort.length) {
-      foo.sort = this.data.sort.join(',');
+  
+    if (this.data.sort.length > 0) {
+      foo.sort = this.data.sort.join(",");
+    } else {
+      delete foo.sort;
     }
+  
     return foo;
   }
 
