@@ -60,7 +60,8 @@ export interface DrupalJsonApiParamsInterface {
   getQueryObject(): object;
 }
 export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
-  private data: DrupalJsonApiParamsStore = {
+
+  protected data: DrupalJsonApiParamsStore = {
     filter: {},
     include: [],
     page: undefined,
