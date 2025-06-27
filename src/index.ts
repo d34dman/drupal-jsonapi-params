@@ -71,7 +71,7 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
 
   protected qsOptions: object = {};
 
-  private config: DrupalJsonApiParamConfig = {
+  protected config: DrupalJsonApiParamConfig = {
     useShortCutForQueryGeneration: true,
     alwaysUseFieldNameForKeys: false,
   };
