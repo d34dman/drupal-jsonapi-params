@@ -448,7 +448,7 @@ export class DrupalJsonApiParams implements DrupalJsonApiParamsInterface {
   public initializeWithQueryObject(input: any) {
     this.clear();
     const keys = Object.keys(input);
-    keys.forEach(key => {
+    keys.forEach((key) => {
       switch (key) {
         case 'sort':
           if (input.sort.length) {

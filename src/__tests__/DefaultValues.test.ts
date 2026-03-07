@@ -245,10 +245,7 @@ test('Add sort by status DESC', () => {
 
 test('Add multiple sort criterion', () => {
   let api = new DrupalJsonApiParams();
-  api
-    .addSort('id', 'DESC')
-    .addSort('uid')
-    .addSort('status');
+  api.addSort('id', 'DESC').addSort('uid').addSort('status');
   expect(api.getQueryString({ encode: false })).toBe('sort=-id,uid,status');
 });
 

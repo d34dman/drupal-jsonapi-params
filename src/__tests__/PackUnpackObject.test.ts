@@ -12,7 +12,7 @@ test('Empty Default Values', () => {
 });
 
 test('getDrupalJsonApiParams', () => {
-  const getDrupalJsonApiParams = function(input: any = undefined) {
+  const getDrupalJsonApiParams = function (input: any = undefined) {
     return new DrupalJsonApiParams().initialize(input);
   };
   // Defaults.
