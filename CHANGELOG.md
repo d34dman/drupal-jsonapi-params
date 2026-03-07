@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.0.1
+
+### Patch Changes
+
+- Fixed security vulnerabilities in production dependency `qs` (DoS via arrayLimit bypass)
+- Updated dev dependencies to address known vulnerabilities (`jest`, `prettier`, `ts-jest`, `typedoc`, `typescript`)
+- Added pnpm overrides to resolve transitive dev dependency vulnerabilities (`minimatch`, `js-yaml`, `tmp`, `diff`)
+
 ## 3.0.0
 
 ### Major Changes
